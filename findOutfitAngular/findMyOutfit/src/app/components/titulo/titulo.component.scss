@@ -1,0 +1,95 @@
+*{
+	font-family: 'Source Serif Pro', serif;
+}
+.main .how-works {
+  padding: 80px 0;
+  background: #E8F9FA;
+
+}
+.main .how-works .titulo {
+  text-align: center;
+  font-weight: 300;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 70px;
+}
+
+.main .nuestra-app {
+  padding: 80px 0;
+}
+.main .nuestra-app .titulo {
+  text-align: center;
+  font-weight: 300;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 70px;
+}
+
+
+header {
+  background: url(/assets/backgroundheader.png);
+  bacground-size: cover;
+  background-position: center 0;
+  background-repeat: no-repeat;
+  height: 619px;
+}
+header .contenedor_menu_logo {
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+header .contenedor_menu_logo .logo {
+  padding-bottom: 10px;
+}
+header .contenedor_menu_logo .logo a {
+  display: block;
+}
+header .contenedor_menu_logo .logo a img {
+  vertical-align: top;
+  width: 350px;
+}
+header .contenedor_menu_logo .menu {
+  text-align: right;
+  line-height: 50px;
+}
+header .contenedor_menu_logo .menu a {
+  color: #fff;
+  margin-left: 60px;
+  font-size: 14px;
+}
+header .textos {
+  color: #ffffff;
+  text-align: left;
+}
+header .textos .primera_linea, header .textos segunda_linea {
+  font-weight: 300;
+  margin: 50px 0;
+}
+header .textos .primera_linea {
+  font-size: 35px;
+  list-style: 35px;
+  margin-bottom: 30px;
+}
+header .textos .segunda_linea {
+  font-size: 20px;
+  list-style: 25px;
+  margin-bottom: 20px;
+}
+header .textos .contenedor-btn img {
+  width: 100px;
+}
+header .textos .imagen-mac img {
+  width: 420px;
+}
+header .navbar-default {
+  background: #c9c9ff;
+  border-color: #c9c9ff;
+}
+
+.icons{
+	padding-top:50px;
+}
+
+.contenedor-btn-find img{
+	padding-top:20px;
+	width: 200px;
+}
