@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Sugerencia} from '../../models/sugerencia';
+import data from '../../../assets/json/sugerencias.json';
+import {NavbarComponent} from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-lista-sugerencias',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaSugerenciasComponent implements OnInit {
 
-  constructor() { }
+  sugerencias = new Array<Sugerencia>();
+
+  constructor()
+  {
+    this.sugerencias = new Array<Sugerencia>();
+    this.sugerencias = data.sugerencias;
+  }
 
   ngOnInit() {
   }

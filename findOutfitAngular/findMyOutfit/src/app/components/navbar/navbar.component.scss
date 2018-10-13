@@ -1,0 +1,23 @@
+.contenedor_menu_logo {
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.contenedor_menu_logo .logo {
+  padding-bottom: 10px;
+}
+.contenedor_menu_logo .logo a {
+  display: block;
+}
+.contenedor_menu_logo .logo a img {
+  vertical-align: top;
+  width: 350px;
+}
+.contenedor_menu_logo .menu {
+  text-align: right;
+  line-height: 50px;
+}
+.contenedor_menu_logo .menu a {
+  color: #fff;
+  margin-left: 60px;
+  font-size: 14px;
+}

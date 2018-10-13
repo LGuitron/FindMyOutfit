@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="card">
+      <div class="card-body">
+
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <h3 class="card-title text-center">Busca tu outfit</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <p class="card-text text-center">Busca outfit con archivos, url o utilizando alguna de las imágenes de muestra</p>
+            </div>
+          </div>
+          <br>
+
+            <div class="row ">
+              <div class="col-sm-12 col-md-12">
+                <img class="mx-auto d-block" src="../../../assets/busca-outfit-imgs/invierno.jpeg" alt="no disponible">
+              </div>
+            </div>
+
+            <br>
+
+            <!-- Agregar servicio del crawler que devuelva el mismo tipo de ropa que el agregado-->
+
+            <div class="row">
+                <div class="col-sm-4 col-md-4"></div>
+                <div class="col-sm-4 col-md-4">
+                    <input type="text" class="form-control" placeholder="http://www.mioutfit.com" id="url">
+                </div>
+                <div class="col-sm-4 col-md-4"></div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-sm-4 col-md-4"></div>
+                <div class="col-sm-4 col-md-4">
+                    <a [routerLink]="['/lista-sugerencias/']"  class="btn btn-danger mx-auto d-block">Busca mi outfit</a>
+                </div>
+              <div class="col-sm-4 col-md-4"></div>
+            </div>
+      </div>
+    </div>
+</div>
