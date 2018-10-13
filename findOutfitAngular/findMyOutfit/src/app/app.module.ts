@@ -7,6 +7,8 @@ import { ListaSugerenciasComponent } from './components/lista-sugerencias/lista-
 import { BuscaOutfitComponent } from './components/busca-outfit/busca-outfit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RoutingModule } from './routing.module';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { RoutingModule } from './routing.module';
     ListaSugerenciasComponent,
     BuscaOutfitComponent,
     NavbarComponent
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
