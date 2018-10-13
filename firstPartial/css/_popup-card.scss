@@ -1,0 +1,43 @@
+.popup{
+    .popupcard{
+        visibility: hidden;
+        text-align: center;
+        position: fixed;
+        width: 50%;
+        left: 25%;
+        top:  0%;
+        z-index: 1;
+    }
+    
+    .card{
+    max-height: 100vh;
+    max-width:   50vw;
+    }
+    
+    .img{
+    max-height: 70vh;
+    max-width:  45vw;
+    width:auto;
+    }
+    
+    .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+    }
+    
+    .hide {
+    visibility: hidden;
+    }
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}

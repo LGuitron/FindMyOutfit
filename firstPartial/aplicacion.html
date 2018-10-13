@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1,0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Find my outfit</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+
+	<section class="header-app">
+		<div class="container">
+			<div class="row contenedor_menu_logo">
+					<div class="logo col-xs-12 col-md-6">
+						<div class="text-center">
+							<a href="aplicacion.html"><img src="img/logoblack.png" alt="no disponible"></a>
+						</div>
+					</div>
+					
+						<div class="menu col-xs-12 col-md-3">
+							<div class="text-center">
+								<input type="text" name="search" placeholder="Buscar...">
+								<a href="Upload.html" data-toggle="tooltip" title="Click here to upload your image"><img src="img/upload.png" alt="no disponible"></a>
+							</div>
+						</div>
+                        
+                        <div class="menu col-xs-12 col-md-3">
+                            <div class="text-center">
+                                <select class="form-control inputstl combobox" onchange="handleSelect(this)">
+                                    <option value="#" selected="selected">Opciones</option>
+                                    <option value="Register">Mi perfil</option>
+                                    <option value="historial">Historial</option>
+                                    <option value="aplicacion" >Favoritos</option>
+                                    <option value="index">Cerrar Sesión</option>
+                                </select>   
+                            </div>
+                        </div>
+			</div>
+
+		
+		</div>
+
+
+	</section>
+	<section class="main">
+		<section class="filtrar">
+			
+			<!-- Categories -->
+				<div class="container">
+					<div class="row row-filtrar">
+						<div class="col-md-6 col-xs-12 mybar">
+							<div class="sidebar_section">
+								<div class="sidebar_title">Categorias</div>
+								<div class="sidebar_section_content">
+									<ul>
+										<li><a href="#">Vestidos (23)</a></li>
+										<li><a href="#">Jeans (11)</a></li>
+										<li><a href="#">Playeras (61)</a></li>
+										<li><a href="#">Camisas (34)</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="col-md-6 col-xs-12">
+							<div class="sidebar_section">
+								<div class="sidebar_title">Size</div>
+								<div class="sidebar_section_content">
+									<ul>
+										<li><a href="#">Chica S (23)</a></li>
+										<li><a href="#">Mediana M (11)</a></li>
+										<li><a href="#">Grande L (61)</a></li>
+										<li><a href="#">Extra Grande XL (34)</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+						
+				</div>
+		</section>
+		<section class="sugerencias-seccion">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="generic-title">Sugerencias para ti</h3>
+					</div>
+				</div>
+				<div class="row" style="padding-bottom: 50px">
+                        <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <select class="form-control inputstl">
+                                    <option selected="selected">Opciones</option>
+                                    <option>Precio: Ascendente</option>
+                                    <option>Precio: Descendente</option>
+                                    <option>Mejor Calificados</option>
+                                </select> 
+                            </div>
+                        <div class="col-md-4"></div>
+				</div>
+				
+                <div class="card-deck ">
+                    <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <div class="card card-style"  onclick="openCardInfo('Nombre', 'Tienda', 999,'img/pantalones.jpeg', 4)">
+                            <div class="sugerencia">
+                                <img src="img/pantalones.jpeg" alt="no disponible">
+                                <p class="nombre">Nombre</p>
+                                <p class="tienda">Tienda</p>
+                                <p class="precio">Precio</p>
+                                <a href="#" class="btn">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <div class="card card-style"  onclick="openCardInfo('Nombre', 'Tienda', 999,'img/playera.jpeg', 4)">
+                            <div class="sugerencia">
+                                <img src="img/playera.jpeg" alt="no disponible">
+                                <p class="nombre">Nombre</p>
+                                <p class="tienda">Tienda</p>
+                                <p class="precio">Precio</p>
+                                <a href="#" class="btn">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <div class="card card-style"  onclick="openCardInfo('Nombre', 'Tienda', 999,'img/playera2.jpeg', 4)">
+                            <div class="sugerencia">
+                                <img src="img/playera2.jpeg" alt="no disponible">
+                                <p class="nombre">Nombre</p>
+                                <p class="tienda">Tienda</p>
+                                <p class="precio">Precio</p>
+                                <a href="#" class="btn">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <div class="card card-style"  onclick="openCardInfo('Nombre', 'Tienda', 999,'img/pants.jpeg', 4)">
+                            <div class="sugerencia">
+                                <img src="img/pants.jpeg" alt="no disponible">
+                                <p class="nombre">Nombre</p>
+                                <p class="tienda">Tienda</p>
+                                <p class="precio">Precio</p>
+                                <a href="#" class="btn">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <div class="card card-style"  onclick="openCardInfo('Nombre', 'Tienda', 999,'img/pants2.jpeg', 4)">
+                            <div class="sugerencia">
+                                <img src="img/pants2.jpeg" alt="no disponible">
+                                <p class="nombre">Nombre</p>
+                                <p class="tienda">Tienda</p>
+                                <p class="precio">Precio</p>
+                                <a href="#" class="btn">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <div class="card card-style"  onclick="openCardInfo('Nombre', 'Tienda', 999,'img/short.jpeg', 4)">
+                            <div class="sugerencia">
+                                <img src="img/short.jpeg" alt="no disponible">
+                                <p class="nombre">Nombre</p>
+                                <p class="tienda">Tienda</p>
+                                <p class="precio">Precio</p>
+                                <a href="#" class="btn">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+            </div>
+        </section>
+    </section>
+
+    <!--Hidden popup that is fixed in the center and becomes visible when a card is clicked-->
+    <section class="main">
+        <section class="sugerencias-seccion">
+            <div class="popup">
+                <div class="popupcard" id="myPopup">
+                    <div class="sugerencia">
+                        <div class="card card-style">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-11"></div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-1">
+                                        <img class="img-fluid" src="img/close-button.png" onclick="closeCardInfo()" alt="no image">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <img class="card-img-top img-responsive" src="img/close-button.png" style="max-height: 50vh; max-width: 35vw; width:auto" id="item-image" alt="image">
+                                <br><br>
+                                <h5 class="card-title text-center" id="item-name"></h5>
+                                <h5 class="card-text" id="store-name"></h5>
+                                <p class="card-text" id="price"></p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star checked" data-rating="1"></span>
+                                    <span class="fa fa-star checked" data-rating="2"></span>
+                                    <span class="fa fa-star checked" data-rating="3"></span>
+                                    <span class="fa fa-star checked" data-rating="4"></span>
+                                    <span class="fa fa-star" data-rating="5"></span>
+                                    <input type="hidden" name="whatever1" class="rating-value" value="3">
+                                </div>
+                                <br>
+                                <a href="https://intl.ralphlauren.com/men-clothing-polo-shirts/classic-fit-mesh-polo-shirt/401480.html?cgid=men-clothing-polo-shirts&dwvar401480_colorname=Canterbury%20Heather&webcat=Men%2FClothing%2FPolo%20Shirts#ab=en_US_MDLP_Slot_2_S4_Image_SHOP&start=1&cgid=men-clothing-polo-shirts" class="btn">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+     </section>
+    <script src="js/open-card-info.js"></script>
+    <script src="js/close-card-info.js"></script>
+    <script src="js/nav-combobox.js"></script>
+</body>
+</html>
