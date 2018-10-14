@@ -11,6 +11,10 @@ import { RoutingModule } from './routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 
+//Servicios
+
+import { AuthService } from './services/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +30,7 @@ import { RegistroComponent } from './components/registro/registro.component';
     RoutingModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
