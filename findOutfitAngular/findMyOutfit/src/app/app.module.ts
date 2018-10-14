@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { TituloComponent } from './components/titulo/titulo.component';
@@ -16,13 +17,14 @@ import { RegistroComponent } from './components/registro/registro.component';
     TituloComponent,
     ListaSugerenciasComponent,
     BuscaOutfitComponent,
-    NavbarComponent
+    NavbarComponent,
     LoginComponent,
     RegistroComponent
   ],
   imports: [
     BrowserModule,
-    RoutingModule
+    RoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
