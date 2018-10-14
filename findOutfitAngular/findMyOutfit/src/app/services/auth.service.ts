@@ -1,3 +1,4 @@
+import { Observable, Observer } from 'rxjs';
 // src/app/auth/auth.service.ts
 
 import { Injectable } from '@angular/core';
@@ -10,12 +11,14 @@ import * as auth0 from 'auth0-js';
 @Injectable()
 export class AuthService {
 
+  public userProfile:any;
+
   auth0 = new auth0.WebAuth({
     clientID: 'SAceQM5wiIiS4UOdBtLDApzCyxrgLr2X',
     domain: 'findmyoutfit.auth0.com',
     responseType: 'token id_token',
     redirectUri: 'http://localhost:3000/callback',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   constructor(public router: Router) {}
@@ -33,9 +36,11 @@ export class AuthService {
       } else if (err) {
         this.router.navigate(['/home']);
         console.log(err);
-      }
+      }  
     });
   }
+
+
 
   private setSession(authResult): void {
     // Set the time that the Access Token will expire at
@@ -60,5 +65,20 @@ export class AuthService {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
     return new Date().getTime() < expiresAt;
   }
+
+  public getProfile(cb): void {
+  const accessToken = localStorage.getItem('access_token');
+  if (!accessToken) {
+    throw new Error('Access Token must exist to fetch profile');
+  }
+
+  const self = this;
+  this.auth0.client.userInfo(accessToken, (err, profile) => {
+    if (profile) {
+      self.userProfile = profile;
+    }
+    cb(err, profile);
+  });
+}
 
 }

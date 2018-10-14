@@ -8,12 +8,14 @@ import { ListaSugerenciasComponent } from './components/lista-sugerencias/lista-
 import { BuscaOutfitComponent } from './components/busca-outfit/busca-outfit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RoutingModule } from './routing.module';
-import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
+
+import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
+
 
 //Servicios
 
 import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { AuthService } from './services/auth.service';
     ListaSugerenciasComponent,
     BuscaOutfitComponent,
     NavbarComponent,
-    LoginComponent,
-    RegistroComponent
+    EditarProfileComponent,
+    
+
   ],
   imports: [
     BrowserModule,

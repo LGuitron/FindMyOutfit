@@ -8,9 +8,12 @@ import { AuthService } from "../../services/auth.service";
 })
 export class TituloComponent implements OnInit {
 
-  constructor(private auth:AuthService) { }
+  constructor(private auth:AuthService) { 
+  	//auth.handleAuthentication();
+  }
 
   ngOnInit() {
+
   }
 
   login(){
