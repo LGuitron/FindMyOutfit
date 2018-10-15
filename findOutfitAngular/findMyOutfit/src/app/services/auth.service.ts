@@ -1,4 +1,4 @@
-import { Observable, Observer } from 'rxjs';
+
 // src/app/auth/auth.service.ts
 
 import { Injectable } from '@angular/core';
@@ -17,7 +17,7 @@ export class AuthService {
     clientID: 'SAceQM5wiIiS4UOdBtLDApzCyxrgLr2X',
     domain: 'findmyoutfit.auth0.com',
     responseType: 'token id_token',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'http://localhost:3000/busca-outfit',
     scope: 'openid profile'
   });
 
@@ -62,7 +62,7 @@ export class AuthService {
   public isAuthenticated(): boolean {
     // Check whether the current time is past the
     // Access Token's expiry time
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
+    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
 

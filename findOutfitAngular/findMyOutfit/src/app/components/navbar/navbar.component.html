@@ -15,14 +15,14 @@
     </div>
 
     <!--HAMBURGER MENU (EN CASO DE LOGIN)-->
-    <div class="logo col-xs-12 col-sm-4 col-md-4">
+    <div class="logo col-xs-12 col-sm-4 col-md-4" *ngIf="!auth.isAuthenticated()">
       <mdb-navbar SideClass="navbar navbar-light white" [containerInside]="false" [iconBackground]="['white', 'darken-2']">
         <mdb-navbar-brand><a class="navbar-brand" href="#">Opciones</a></mdb-navbar-brand>
 
 
         <links>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a [routerLink]="['/profile/']"> Editar Información</a>
                 </li>
                 <li class="nav-item">
@@ -30,6 +30,7 @@
                 </li>
             </ul>
         </links>
+
       </mdb-navbar>
     </div>
 
