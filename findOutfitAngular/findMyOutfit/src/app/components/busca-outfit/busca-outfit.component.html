@@ -25,23 +25,25 @@
             <br>
 
             <!-- Agregar servicio del crawler que devuelva el mismo tipo de ropa que el agregado-->
+            <form>
+              <div class="row">
+                  <div class="col-sm-4 col-md-4"></div>
+                  <div class="col-sm-4 col-md-4">
+                      <input type="text" class="form-control" placeholder="http://www.mioutfit.com" id="url">
+                  </div>
+                  <div class="col-sm-4 col-md-4"></div>
+              </div>
+              <br>
 
-            <div class="row">
+              <div class="row">
                 <div class="col-sm-4 col-md-4"></div>
-                <div class="col-sm-4 col-md-4">
-                    <input type="text" class="form-control" placeholder="http://www.mioutfit.com" id="url">
-                </div>
+                  <div class="col-sm-4 col-md-4">
+                      <!--a [routerLink]="['/lista-sugerencias/']"  class="btn btn-danger mx-auto d-block">Busca mi outfit</a-->
+                      <input type="submit" class="btn btn-danger mx-auto d-block" [routerLink]="['/lista-sugerencias/']" value="Busca mi outfit">
+                  </div>
                 <div class="col-sm-4 col-md-4"></div>
-            </div>
-            <br>
-
-            <div class="row">
-              <div class="col-sm-4 col-md-4"></div>
-                <div class="col-sm-4 col-md-4">
-                    <a [routerLink]="['/lista-sugerencias/']"  class="btn btn-danger mx-auto d-block">Busca mi outfit</a>
-                </div>
-              <div class="col-sm-4 col-md-4"></div>
-            </div>
+              </div>
+            </form>
       </div>
     </div>
 </div>
