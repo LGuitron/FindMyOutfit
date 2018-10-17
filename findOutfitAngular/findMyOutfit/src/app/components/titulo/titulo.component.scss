@@ -7,7 +7,7 @@
 .main {
   .how-works{
   background: #E8F9FA;
-  padding: 0%; 
+  padding: 5%; 
     .titulo {
       text-align: center;
       font-weight: 300px;
@@ -33,7 +33,7 @@ header {
   bacground-size: cover;
   background-position: center 0;
   background-repeat: no-repeat;
-  height: 619px;
+  
 
   .contenedor_menu_logo {
     padding: 25px 0;
@@ -107,16 +107,12 @@ text-align: center;
 
 /*xs*/
 @media only screen and (min-width: 0px) and (max-width: 575px){ 
-  .main{
-    background: red; 
-    width: 100%; 
-  }
   .main {
     .how-works{
       .titulo {
         font-weight: 100;
         font-size: 32px;
-        margin-bottom: 70px;
+        
       }
     }
     .nuestra-app {
@@ -131,13 +127,15 @@ text-align: center;
 
 
   header {
-    height: 619px;
+    text-align: center;
+    color: grey;
+    padding-bottom: 20px; 
     .contenedor_menu_logo {
       padding: 25px 0;
       .logo {
         a {
           img {
-            width: 350px;
+            width: 250px;
           }
         }
       }
@@ -152,20 +150,25 @@ text-align: center;
     }
     .textos {
       .primera_linea, .segunda_linea {
+        color: grey;
         font-weight: 300;
         margin: 50px 0;
+      
       }
   
       .primera_linea {
         font-size: 35px;
         list-style: 35px;
         margin-bottom: 30px;
+        margin-top: 0px;
+        color: white; 
       }
   
       .segunda_linea {
         font-size: 20px;
         list-style: 25px;
         margin-bottom: 20px;
+        margin-top: 55px;
       }
       .contenedor-btn img {
         width: 100px;
@@ -181,28 +184,99 @@ text-align: center;
 
 /*sm*/
 @media only screen and (min-width: 576px) and (max-width: 767px){ 
-  .main{
-    background: blue; 
+  .main {
+    .how-works{
+      .titulo {
+        font-weight: 100;
+        font-size: 32px;
+        
+      }
+    }
+    .nuestra-app {
+     
+      .titulo {
+        font-weight: 300;
+        font-size: 32px;
+        margin-bottom: 70px;
+      }
+    }
+  }
+
+
+  header {
+    text-align: center;
+    color: grey;
+    padding-bottom: 20px; 
+    .contenedor_menu_logo {
+      padding: 25px 0;
+      .logo {
+        a {
+          img {
+            width: 250px;
+          }
+        }
+      }
+  
+      .menu {
+        line-height: 50px;
+        a {
+          margin-left: 60px;
+          font-size: 14px;
+        }
+      }
+    }
+    .textos {
+      .primera_linea, .segunda_linea {
+        color: grey;
+        font-weight: 300;
+        margin: 50px 0;
+        text-align: center; 
+      
+      }
+  
+      .primera_linea {
+        font-size: 35px;
+        list-style: 35px;
+        margin-bottom: 30px;
+        margin-top: 0px;
+        color: white; 
+      }
+  
+      .segunda_linea {
+        font-size: 20px;
+        list-style: 25px;
+        margin-bottom: 20px;
+        margin-top: 55px;
+      }
+      .contenedor-btn img {
+        width: 100px;
+      }
+      .imagen-mac img {
+        width: 300px;
+      }
+    }
+  
   }
 }
 
 /*md*/
 @media only screen and (min-width: 768px) and (max-width: 991px){ 
-  .main{
-    background: orange; 
+  header{
+    height: 619px;
   }
 }
 
 /*lg*/
 @media only screen and (min-width: 992px) and (max-width: 1199px){ 
-  .main{
-    background: black; 
+  header{
+    height: 619px;
   }
 }
 
 /*xl*/
 @media only screen and (min-width: 1200px){ 
-  .main{
-    background: yellow; 
+
+  header{
+    height: 619px;
   }
 }
