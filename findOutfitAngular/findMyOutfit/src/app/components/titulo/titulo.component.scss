@@ -1,6 +1,7 @@
 @import '../../../variables';
 *{
-	font-family: 'Source Serif Pro', serif;
+  font-family: 'Source Serif Pro', serif;
+  max-width: 100%;
 }
 
 .main {
@@ -9,7 +10,7 @@
   padding: 0%; 
     .titulo {
       text-align: center;
-      font-weight: 300;
+      font-weight: 300px;
       font-size: 32px;
       color: #000;
       margin-bottom: 70px;
@@ -93,7 +94,8 @@ header {
 }
 
 .icons{
-padding-top:50px;
+padding-top:50px; 
+text-align: center; 
 }
 
 .contenedor-btn-find img{
@@ -107,6 +109,7 @@ padding-top:50px;
 @media only screen and (min-width: 0px) and (max-width: 575px){ 
   .main{
     background: red; 
+    width: 100%; 
   }
   .main {
     .how-works{
@@ -117,13 +120,61 @@ padding-top:50px;
       }
     }
     .nuestra-app {
-      padding: 80px 0;
+     
       .titulo {
         font-weight: 300;
         font-size: 32px;
         margin-bottom: 70px;
       }
     }
+  }
+
+
+  header {
+    height: 619px;
+    .contenedor_menu_logo {
+      padding: 25px 0;
+      .logo {
+        a {
+          img {
+            width: 350px;
+          }
+        }
+      }
+  
+      .menu {
+        line-height: 50px;
+        a {
+          margin-left: 60px;
+          font-size: 14px;
+        }
+      }
+    }
+    .textos {
+      .primera_linea, .segunda_linea {
+        font-weight: 300;
+        margin: 50px 0;
+      }
+  
+      .primera_linea {
+        font-size: 35px;
+        list-style: 35px;
+        margin-bottom: 30px;
+      }
+  
+      .segunda_linea {
+        font-size: 20px;
+        list-style: 25px;
+        margin-bottom: 20px;
+      }
+      .contenedor-btn img {
+        width: 100px;
+      }
+      .imagen-mac img {
+        width: 300px;
+      }
+    }
+  
   }
 }
 
