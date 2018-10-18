@@ -8,6 +8,7 @@ import { ListaSugerenciasComponent } from './components/lista-sugerencias/lista-
 import { BuscaOutfitComponent } from './components/busca-outfit/busca-outfit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RoutingModule } from './routing.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
 
@@ -31,6 +32,7 @@ import { AuthService } from './services/auth.service';
   imports: [
     BrowserModule,
     RoutingModule,
+    NgbModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService],
