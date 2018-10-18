@@ -33,3 +33,17 @@ $grid-breakpoints: (
 );
 
 
+@media only screen and (min-width: 0px) and (max-width: 575px){ 
+  .contenedor_menu_logo {
+    .logo {
+      padding-bottom: 10px;
+      a {
+        display: block;
+        img {
+          vertical-align: top;
+          width: 280px;
+        }
+      }
+    }
+  }
+}

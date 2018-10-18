@@ -103,7 +103,8 @@ header {
   }
   .textos {
     color: #ffffff;
-    text-align: left;
+    text-align: justify;
+    text-justify: inter-word;
     .primera_linea, .segunda_linea {
       font-weight: 300;
       margin: 50px 0;
