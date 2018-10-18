@@ -25,21 +25,20 @@
             <br>
 
             <!-- Agregar servicio del crawler que devuelva el mismo tipo de ropa que el agregado-->
-            <form>
+            <form [formGroup]="imageForm" (ngSubmit)="sendForm()">
               <div class="row">
-                  <div class="col-sm-4 col-md-4"></div>
-                  <div class="col-sm-4 col-md-4">
-                      <input type="text" class="form-control" placeholder="http://www.mioutfit.com" id="url">
+                  <div class="col-sm-3 col-md-3"></div>
+                  <div class="col-sm-6 col-md-6">
+                      <input class="form-control form-control-.lg" type="text"  formControlName="img_url">
                   </div>
-                  <div class="col-sm-4 col-md-4"></div>
+                  <div class="col-sm-3 col-md-3"></div>
               </div>
               <br>
 
               <div class="row">
                 <div class="col-sm-4 col-md-4"></div>
                   <div class="col-sm-4 col-md-4">
-                      <!--a [routerLink]="['/lista-sugerencias/']"  class="btn btn-danger mx-auto d-block">Busca mi outfit</a-->
-                      <input type="submit" class="btn btn-danger mx-auto d-block" [routerLink]="['/lista-sugerencias/']" value="Busca mi outfit">
+                      <input type="submit" class="btn btn-danger mx-auto d-block" value="Busca mi outfit">
                   </div>
                 <div class="col-sm-4 col-md-4"></div>
               </div>

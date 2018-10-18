@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as Clarifai  from 'clarifai'
+import { Observable, empty, of } from 'rxjs';
+import * as Clarifai  from 'clarifai';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ClarifaiService {
 
   }
 
-  getTags(image_url) {
+  getTags(image_url) : Observable<any>{
 
       // predict the contents of an image by passing in a url
      var app = new Clarifai.App({
@@ -19,13 +20,16 @@ export class ClarifaiService {
 
      app.models.predict( Clarifai.APPAREL_MODEL, image_url).then(
       function(response) {
-        console.log("RESULT CLARIFAI QUERY");
+        console.log("CLARIFAI API PREDICTION");
         console.log(response);
+        return response;
       },
       function(err) {
         console.error(err);
+        return empty();
       }
     );
+     //return new EmptyObservable<Response>();
+     return empty();
   }
-
 }

@@ -16,6 +16,8 @@ import { EditarProfileComponent } from './components/editar-profile/editar-profi
 
 import { AuthService } from './services/auth.service';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { AuthService } from './services/auth.service';
   imports: [
     BrowserModule,
     RoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService],
