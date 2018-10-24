@@ -2,45 +2,51 @@
     "sugerencias": [
       {
         "nombre": "jeans",
-        "tienda": "tienda1",
+        "tienda": "FindMyOutfit",
         "costo": "$500.00",
         "url_imagen": "../../../assets/crawled-images/pantalones.jpeg",
-        "url_sitioweb": "https://www.google.com/"
+        "url_sitioweb": "https://www.google.com/",
+        "tags":["pantalones"]
       },
       {
         "nombre": "pants",
-        "tienda": "tienda2",
+        "tienda": "FindMyOutfit",
         "costo": "$500.00",
         "url_imagen": "../../../assets/crawled-images/pants.jpeg",
-        "url_sitioweb": "https://www.google.com/"
+        "url_sitioweb": "https://www.google.com/",
+        "tags":["pants", "pantalones"]
       },
       {
         "nombre": "pants2",
-        "tienda": "tienda1",
+        "tienda": "FindMyOutfit",
         "costo": "$500.00",
         "url_imagen": "../../../assets/crawled-images/pants2.jpeg",
-        "url_sitioweb": "https://www.google.com/"
+        "url_sitioweb": "https://www.google.com/",
+        "tags":["pants", "pantalones"]
       },
       {
         "nombre": "playera",
-        "tienda": "tienda2",
+        "tienda": "FindMyOutfit",
         "costo": "$500.00",
         "url_imagen": "../../../assets/crawled-images/playera.jpeg",
-        "url_sitioweb": "https://www.google.com/"
+        "url_sitioweb": "https://www.google.com/",
+        "tags":["playera", "playera para hombre"]
       },
       {
         "nombre": "playera2",
-        "tienda": "tienda1",
+        "tienda": "FindMyOutfit",
         "costo": "$500.00",
         "url_imagen": "../../../assets/crawled-images/playera2.jpeg",
-        "url_sitioweb": "https://www.google.com/"
+        "url_sitioweb": "https://www.google.com/",
+        "tags":["playera", "playera para hombre"]
       },
       {
         "nombre": "short",
-        "tienda": "tienda2",
+        "tienda": "FindMyOutfit",
         "costo": "$500.00",
         "url_imagen": "../../../assets/crawled-images/short.jpeg",
-        "url_sitioweb": "https://www.google.com/"
+        "url_sitioweb": "https://www.google.com/",
+        "tags":["shorts", "bermudas"]
       }
     ]
   }

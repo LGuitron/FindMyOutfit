@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
@@ -8,7 +10,7 @@ import { ListaSugerenciasComponent } from './components/lista-sugerencias/lista-
 import { BuscaOutfitComponent } from './components/busca-outfit/busca-outfit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RoutingModule } from './routing.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
 
@@ -28,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BuscaOutfitComponent,
     NavbarComponent,
     EditarProfileComponent,
-    
+
 
   ],
   imports: [
@@ -37,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService],
