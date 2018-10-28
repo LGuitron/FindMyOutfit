@@ -18,14 +18,17 @@ export class ListaSugerenciasComponent implements OnInit {
   tags : Array<any>;
   sugerencias = new Array<Sugerencia>();
 
+  mercadoLibreSuggestions = 21;           // Max number of suggestions to receive from Mercado Libre
+  probability_exponent    =  3;           // Variable to favor tags with higher probabilities
+
+  items_per_tag = [];
+  display_tags  = new Array<boolean>();         // Boolean array to set the tags to be displayed
+
+  //show : boolean  = true;
+
   constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService){ }
   ngOnInit()
   {
-
-      //this.sugerencias = data.sugerencias;
-
-
-
       // Get URL from transfer service and use Clarifai Service
       this.imageUrl         = this.transferService.getUrl();
       this.getTags();
@@ -34,37 +37,72 @@ export class ListaSugerenciasComponent implements OnInit {
       this.sugerencias = new Array<Sugerencia>();
       this.filterFromStore(data.sugerencias, ['tag1', 'tag2']);
 
-
-      this.getClothesWithTag('women hat', 2);
+      //this.getClothesWithTag('women hat', 2);
   }
 
   getTags()
   {
-        this.clarifai.getTags(this.imageUrl).subscribe(
+      this.clarifai.getTags(this.imageUrl).subscribe(
       (data: any)=>
       {
           this.zone.run(() => {
             this.tags = data.outputs[0].data.concepts;
+
+            // When the tags have been returned use them to find clothes
+            this.getItemsPerTag();
+            this.getClothesWithTag()
           });
       }
     );
   }
 
-  // Append cloth suggestions from Mercado Libre to suggestions array
-  getClothesWithTag(tag : string, maxAmount : number )
+  getItemsPerTag()
   {
+      // Calculate sum of all tag probabilities
+      let totalSum = 0;
+      for(let tag of this.tags)
+      {
+        totalSum += Math.pow(tag.value, this.probability_exponent);
+      }
+
+      // Calculate amount of items to find per each Tag
+      for(let tag of this.tags)
+      {
+        this.items_per_tag.push(Math.round(Math.pow(tag.value, this.probability_exponent)*this.mercadoLibreSuggestions/totalSum));
+        this.display_tags.push(this.items_per_tag[this.items_per_tag.length-1] > 0);
+        //console.log("Tag: " + tag.name);
+        //console.log("#: " + this.items_per_tag[this.items_per_tag.length-1]);
+      }
+  }
 
 
-      this.mercadoLibre.findItems(tag, maxAmount).subscribe((return_data: any) => {
-          //this.clothes = return_data.results;
-          var cloth_tags = new Array<string>();
-          cloth_tags.push(tag);
 
-          for(let cloth of return_data.results)
-          {
-            this.sugerencias.push(new Sugerencia(cloth.title,'Mercado Libre',cloth.price, cloth.thumbnail, cloth.permalink, cloth_tags));
-          }
-      });
+  // Append cloth suggestions from Mercado Libre to suggestions array
+  getClothesWithTag()
+  {
+      //for(let tag of this.tags)
+      for(var i = 0; i < this.tags.length; i++)
+      {
+        let item_amount = this.items_per_tag[i];
+        if(item_amount > 0)
+        {
+          let tag = this.tags[i].name;
+          this.mercadoLibre.findItems(tag, parseInt(item_amount)).subscribe((return_data: any) => {
+              var cloth_tags = new Array<string>();
+              cloth_tags.push(tag);
+
+              for(let cloth of return_data.results)
+              {
+                  //get high res image link for each cloth
+                  this.mercadoLibre.itemPicture(cloth.id).subscribe((item_data: any) => {
+                      let image_url   = item_data.pictures[0].secure_url;
+                      let cloth_price = Math.round((parseFloat(cloth.price) * 100) / 100).toFixed(2);
+                      this.sugerencias.push(new Sugerencia(cloth.title,'Mercado Libre',cloth_price, image_url, cloth.permalink, cloth_tags));
+                  });
+              }
+          });
+        }
+      }
   }
 
   // TODO
@@ -78,7 +116,9 @@ export class ListaSugerenciasComponent implements OnInit {
       // Comparar tags de clarifai y tags de sugerencia actual
       if(true)
       {
-        this.sugerencias.push(sugerencia);
+        console.log("add logic here");
+        //sugerencia.costo = Math.round((parseFloat(sugerencia.costo) * 100) / 100).toFixed(2);
+        //this.sugerencias.push(sugerencia);
       }
       //  this.sugerencias.push(sugerencia);
     }

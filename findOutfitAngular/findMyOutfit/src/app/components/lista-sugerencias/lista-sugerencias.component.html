@@ -1,12 +1,45 @@
 <app-navbar></app-navbar>
 <div class="container">
+
+
+
+  <!-- IMAGE UPLOADED BY USER-->
   <div class="row">
     <div class="col-md-12">
-      <h3 class="text-center">Sugerencias para ti</h3>
+      <h3 class="text-center">Tu imagen</h3>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+      <img class="img-fluid" style="width:100%" src={{imageUrl}} alt="no disponible">
+    </div>
 
-    <!--AGREGAR BARRA DE ORDENAR POR-->
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+        <div class="row">
+          <table class="table">
+              <tr class="row">
+                <th class="col-sm-2 col-md-2 text-center">#</th>
+                <th class="col-sm-10 col-md-10 text-center">Tags</th>
+
+              </tr>
+
+              <tr class="row" *ngFor="let display_val of display_tags; let i = index">
+                <td *ngIf="display_val" class="col-sm-2 col-md-2 text-center">
+                  {{i+1}}
+                </td>
+                <td *ngIf="display_val" class="col-sm-10 col-md-10 text-center">
+                  {{tags[i].name}}
+                </td>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+  <hr>
+
+
+      <!--AGREGAR BARRA DE ORDENAR POR-->
 
     <!--div class="row" style="padding-bottom: 50px">
         <div class="col-md-4"></div>
@@ -21,16 +54,22 @@
         <div class="col-md-4"></div>
     </div-->
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Sugerencias para ti</h3>
+    </div>
+  </div>
       <div class="card-deck sugerencias-seccion">
         <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3" *ngFor="let sugerencia of sugerencias; let i = index">
-            <div class="card card-style">
-                <div class="sugerencia">
+            <div class="card h-100 sugerencia">
+                <!--div class="sugerencia"-->
                     <img src={{sugerencia.url_imagen}} alt="no disponible">
                     <p class="nombre">{{sugerencia.nombre}}</p>
                     <p class="tienda">{{sugerencia.tienda}}</p>
-                    <p class="precio">{{sugerencia.costo}}</p>
+                    <p class="precio">${{sugerencia.costo}} MXN</p>
                     <a href={{sugerencia.url_sitioweb}} class="btn btn-success">Ver en tienda</a>
-                </div>
+                <!--/div-->
             </div>
       </div>
 </div>

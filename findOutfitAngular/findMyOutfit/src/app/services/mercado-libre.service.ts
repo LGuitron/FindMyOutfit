@@ -8,7 +8,8 @@ import { map, catchError, tap } from 'rxjs/operators';
 })
 export class MercadoLibreService {
 
-  endpoint = 'https://api.mercadolibre.com/sites/MLA/search';
+  endpoint          = 'https://api.mercadolibre.com/sites/MLA/search';       // Endpoint for finding products by tag
+  endpoint_picture  = 'https://api.mercadolibre.com/items/';       // Endpoint for getting high res image with product id
 
   constructor(private http: HttpClient) { }
 
@@ -17,9 +18,24 @@ export class MercadoLibreService {
 
       return this.http.get(this.endpoint + '?q=' + tag + '&limit=' + maxAmount).pipe(
         map(function(res){
-          console.log("MERCADO LIBRE API");
-          console.log(res);
+          //console.log("MERCADO LIBRE API");
+          //console.log(res);
           return res;
         }));
   }
+
+  itemPicture(item_id : string): Observable<any>
+  {
+
+      return this.http.get(this.endpoint_picture + item_id).pipe(
+        map(function(res){
+          //console.log("HIGH RES IMAGE API");
+          //console.log(res);
+          return res;
+        }));
+  }
+
+
+
+
 }
