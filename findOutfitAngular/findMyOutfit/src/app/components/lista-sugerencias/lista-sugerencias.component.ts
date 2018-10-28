@@ -24,13 +24,24 @@ export class ListaSugerenciasComponent implements OnInit {
   items_per_tag = [];
   display_tags  = new Array<boolean>();         // Boolean array to set the tags to be displayed
 
-  //show : boolean  = true;
-
   constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService){ }
   ngOnInit()
   {
-      // Get URL from transfer service and use Clarifai Service
-      this.imageUrl         = this.transferService.getUrl();
+      this.imageUrl = this.transferService.getUrl();
+
+      // If page was refreshed get url from local storage
+      if(typeof this.imageUrl === "undefined")
+      {
+        this.imageUrl = localStorage.getItem('imageUrl');
+      }
+
+      // Save url requested into local storage
+      else
+      {
+        localStorage.setItem('imageUrl', this.imageUrl);
+      }
+
+      // Use Clarifai Service
       this.getTags();
 
       // Set suggestions from our catalog based on tags obtained
