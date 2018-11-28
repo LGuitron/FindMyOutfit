@@ -53,7 +53,6 @@
             </div>
         <div class="col-md-4"></div>
     </div-->
-
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -67,7 +66,8 @@
                     <img src={{sugerencia.url_imagen}} alt="no disponible">
                     <p class="nombre">{{sugerencia.nombre}}</p>
                     <p class="tienda">{{sugerencia.tienda}}</p>
-                    <p class="precio">${{sugerencia.costo}} MXN</p>
+                    <p class="precio">${{setTwoNumberDecimal(sugerencia.costo)}} MXN</p>
+                    <!--p class="precio">${{sugerencia.costo}} MXN</p-->
                     <a href={{sugerencia.url_sitioweb}} class="btn btn-success">Ver en tienda</a>
                 <!--/div-->
             </div>

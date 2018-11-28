@@ -10,14 +10,23 @@
       </div>
     </div>
 
+
     <!--IMAGEN DE PERFIL (EN CASO DE LOGIN)-->
     <div class="logo col-xs-12 col-sm-2 col-md-2">
     </div>
 
+
+    <!--FORM PARA AGREGAR NUEVOS PRODUCTOS AL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
+    <div class="col-xs-1 col-sm-1 col-md-1">
+      <a [routerLink]="['/catalog/']"><img class="img-fluid" src="../../../assets/navbar/shirt.png"></a>
+    </div>
+
+
     <!--HAMBURGER MENU (EN CASO DE LOGIN)-->
-    <div class="logo col-xs-12 col-sm-4 col-md-4" *ngIf="!auth.isAuthenticated()">
+    <!--div class="logo col-xs-3 col-sm-3 col-md-3" *ngIf="!auth.isAuthenticated()"-->
+    <div class="logo col-xs-3 col-sm-3 col-md-3">
       <mdb-navbar SideClass="navbar navbar-light white" [containerInside]="false" [iconBackground]="['white', 'darken-2']">
-        <mdb-navbar-brand><a class="navbar-brand" href="#">Opciones</a></mdb-navbar-brand>
+        <mdb-navbar-brand><a class="navbar-brand" href="#">Mi Perfil</a></mdb-navbar-brand>
 
 
         <links>
@@ -25,6 +34,7 @@
                 <li class="nav-item">
                     <a class="nav-link waves-light" [routerLink]="['/profile/']"> Editar Información</a>
                 </li>
+
                 <li class="nav-item">
                     <a (click)="salir()" class="nav-link waves-light" mdbWavesEffect>Cerrar Sesión</a>
                 </li>

@@ -41,17 +41,19 @@ export class ListaSugerenciasComponent implements OnInit {
         localStorage.setItem('imageUrl', this.imageUrl);
       }
 
-      // Use Clarifai Service
-      this.getTags();
 
       // Set suggestions from our catalog based on tags obtained
       this.sugerencias = new Array<Sugerencia>();
-      this.filterFromStore(data.sugerencias, ['tag1', 'tag2']);
+
+      // Use Clarifai Service
+      this.getTags(data.sugerencias);
+
+      //this.filterFromStore(data.sugerencias, ['tag1', 'tag2']);
 
       //this.getClothesWithTag('women hat', 2);
   }
 
-  getTags()
+  getTags(catalogo : Array<Sugerencia>)
   {
       this.clarifai.getTags(this.imageUrl).subscribe(
       (data: any)=>
@@ -61,7 +63,8 @@ export class ListaSugerenciasComponent implements OnInit {
 
             // When the tags have been returned use them to find clothes
             this.getItemsPerTag();
-            this.getClothesWithTag()
+            this.getClothesWithTag();
+            this.filterFromStore(catalogo);
           });
       }
     );
@@ -107,7 +110,9 @@ export class ListaSugerenciasComponent implements OnInit {
                   //get high res image link for each cloth
                   this.mercadoLibre.itemPicture(cloth.id).subscribe((item_data: any) => {
                       let image_url   = item_data.pictures[0].secure_url;
-                      let cloth_price = Math.round((parseFloat(cloth.price) * 100) / 100).toFixed(2);
+                      //let cloth_price = Math.round((parseFloat(cloth.price) * 100) / 100).toFixed(2);
+                      let cloth_price = Math.round((parseFloat(cloth.price) * 100) / 100);
+
                       this.sugerencias.push(new Sugerencia(cloth.title,'Mercado Libre',cloth_price, image_url, cloth.permalink, cloth_tags));
                   });
               }
@@ -119,21 +124,42 @@ export class ListaSugerenciasComponent implements OnInit {
   // TODO
   // Append cloth suggestions from our own store
   // Only if tags placed on them are similar to tags returned by clarify
-  filterFromStore(catalogo : Array<Sugerencia>, tags : Array<string>)
+  filterFromStore(catalogo : Array<Sugerencia>)
   {
     console.log("Verificar si hay coincidencia en tag de ropa para decidir si agregar los productos de nuestro catalogo");
+
+    // Check all suggestions in the catalog
     for(let sugerencia of catalogo)
     {
-      // Comparar tags de clarifai y tags de sugerencia actual
-      if(true)
+      console.log(sugerencia);
+      let foundMatch : boolean = false;
+
+      // Check all tags found from clarifai service
+      for(let tag of this.tags)
       {
-        console.log("add logic here");
-        //sugerencia.costo = Math.round((parseFloat(sugerencia.costo) * 100) / 100).toFixed(2);
-        //this.sugerencias.push(sugerencia);
+
+          // Check all of the tags for the current item
+          for (let current_item_tag of sugerencia.tags)
+          {
+              // Comparar tags de clarifai y tags de sugerencia actual
+              if(tag.name.toLowerCase().includes(current_item_tag.toLowerCase()))
+              {
+                this.sugerencias.push(sugerencia);
+                foundMatch = true;
+                break;
+              }
+          }
+          if(foundMatch)
+            break;
       }
       //  this.sugerencias.push(sugerencia);
     }
   }
 
 
+  // Function for displaying price with 2 decimal places
+  setTwoNumberDecimal(price: number) : string
+  {
+    return Math.round((price * 100) / 100).toFixed(2);
+  }
 }

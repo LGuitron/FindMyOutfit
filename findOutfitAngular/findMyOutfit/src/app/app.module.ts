@@ -20,6 +20,7 @@ import { EditarProfileComponent } from './components/editar-profile/editar-profi
 import { AuthService } from './services/auth.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CatalogoComponent } from './components/catalogo/catalogo.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BuscaOutfitComponent,
     NavbarComponent,
     EditarProfileComponent,
+    CatalogoComponent,
 
 
   ],

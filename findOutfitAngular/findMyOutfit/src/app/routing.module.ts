@@ -4,14 +4,14 @@ import { TituloComponent } from './components/titulo/titulo.component';
 import { BuscaOutfitComponent } from './components/busca-outfit/busca-outfit.component';
 import { ListaSugerenciasComponent } from './components/lista-sugerencias/lista-sugerencias.component';
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
-
+import { CatalogoComponent } from './components/catalogo/catalogo.component';
 
 const routes: Routes = [
   { path: 'busca-outfit', component: BuscaOutfitComponent },
   { path: 'lista-sugerencias', component: ListaSugerenciasComponent },
   { path: '', component: TituloComponent },
   { path: 'profile', component: EditarProfileComponent },
-  
+  { path: 'catalog', component: CatalogoComponent },
 ];
 
 export const RoutingModule: ModuleWithProviders =
