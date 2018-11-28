@@ -3,20 +3,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, empty, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import * as Clarifai  from 'clarifai';
+import externalApis from '../../assets/json/externalApis.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClarifaiService {
 
-  endpoint = 'https://api.clarifai.com/v2/models/e0be3b9d6a454f0493ac3a30784001ff/outputs';
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'Key 84a695c53e2f4b788b6863716a90d06b'
-    })
-  };
+  endpoint = externalApis.clarifai;
 
   constructor(private http: HttpClient) {}
   getTags(image_url) : Observable<any>
@@ -33,11 +27,8 @@ export class ClarifaiService {
                             ]
                           };
 
-
-      return this.http.post(this.endpoint, request_body, this.httpOptions).pipe(
+      return this.http.post(this.endpoint, request_body).pipe(
         map(function(res){
-          //console.log("CLARIFAI API");
-          //console.log(res);
           return res;
         }));
   }

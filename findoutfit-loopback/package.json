@@ -51,6 +51,8 @@
     "@loopback/repository": "^1.0.2",
     "@loopback/rest": "^1.1.0",
     "@loopback/service-proxy": "^1.0.0",
+    "axios": "^0.18.0",
+    "https": "^1.0.0",
     "mercadolibre": "0.0.13"
   },
   "devDependencies": {

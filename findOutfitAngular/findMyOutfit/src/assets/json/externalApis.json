@@ -1,0 +1,5 @@
+{
+  "mercadolibre": "http://localhost:5000/api/mercadolibre/item",
+  "mercadolibre_image": "http://localhost:5000/api/mercadolibre/image",
+  "clarifai":"http://localhost:5000/api/clarifai"
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import {Sugerencia} from '../../models/sugerencia';
 import data from '../../../assets/json/sugerencias.json';
+import externalApis from '../../../assets/json/externalApis.json';
 import {NavbarComponent} from '../navbar/navbar.component';
 import { ClarifaiService } from '../../services/clarifai.service';
 import { MercadoLibreService } from '../../services/mercado-libre.service';
@@ -19,13 +20,10 @@ export class ListaSugerenciasComponent implements OnInit {
   tags : Array<any>;
   sugerencias = new Array<Sugerencia>();
 
-  mercadoLibreSuggestions = 21;           // Max number of suggestions to receive from Mercado Libre
-  probability_exponent    =  3;           // Variable to favor tags with higher probabilities
-
+  mercadoLibreSuggestions = 21;                 // Max number of suggestions to receive from Mercado Libre
+  probability_exponent    =  3;                 // Variable to favor tags with higher probabilities
   items_per_tag = [];
   display_tags  = new Array<boolean>();         // Boolean array to set the tags to be displayed
-
-  itemEndpoint = "localhost:5000/marcadolibre/item/";
 
   constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){ }
   ngOnInit()
@@ -44,16 +42,11 @@ export class ListaSugerenciasComponent implements OnInit {
         localStorage.setItem('imageUrl', this.imageUrl);
       }
 
-
       // Set suggestions from our catalog based on tags obtained
       this.sugerencias = new Array<Sugerencia>();
 
       // Use Clarifai Service
       this.getTags(data.sugerencias);
-
-      //this.filterFromStore(data.sugerencias, ['tag1', 'tag2']);
-
-      //this.getClothesWithTag('women hat', 2);
   }
 
   getTags(catalogo : Array<Sugerencia>)
@@ -102,18 +95,22 @@ export class ListaSugerenciasComponent implements OnInit {
         if(item_amount > 0)
         {
           let tag = this.tags[i].name;
-          this.mercadoLibre.findItems(tag, parseInt(item_amount)).subscribe((return_data: any) => {
-          //this.http.get(this.itemEndpoint + tag + "/" + parseInt(item_amount)).subscribe((return_data: any) => {
+          //this.mercadoLibre.findItems(tag, parseInt(item_amount)).subscribe((return_data: any) => {
+
+          // REQUEST TO EXTERNAL API WITH LOOPBACK//
+          this.http.get(externalApis.mercadolibre + "/" +  tag + "/" + parseInt(item_amount)).subscribe((return_data: any) => {
               var cloth_tags = new Array<string>();
               cloth_tags.push(tag);
 
               for(let cloth of return_data.results)
               {
                   //get high res image link for each cloth
-                  this.mercadoLibre.itemPicture(cloth.id).subscribe((item_data: any) => {
+                  //this.mercadoLibre.itemPicture(cloth.id).subscribe((item_data: any) => {
+
+                  // REQUEST TO EXTERNAL API WITH LOOPBACK//
+                  this.http.get(externalApis.mercadolibre_image + "/" + cloth.id).subscribe((item_data: any) => {
                       let image_url   = item_data.pictures[0].secure_url;
                       let cloth_price = Math.round((parseFloat(cloth.price) * 100) / 100);
-
                       this.sugerencias.push(new Sugerencia(cloth.title,'Mercado Libre',cloth_price, image_url, cloth.permalink, cloth_tags));
                   });
               }
@@ -130,7 +127,6 @@ export class ListaSugerenciasComponent implements OnInit {
     // Check all suggestions in the catalog
     for(let sugerencia of catalogo)
     {
-      console.log(sugerencia);
       let foundMatch : boolean = false;
 
       // Check all tags found from clarifai service
