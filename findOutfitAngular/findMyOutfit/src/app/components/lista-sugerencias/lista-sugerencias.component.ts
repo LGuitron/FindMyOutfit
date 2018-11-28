@@ -6,6 +6,7 @@ import { ClarifaiService } from '../../services/clarifai.service';
 import { MercadoLibreService } from '../../services/mercado-libre.service';
 import { ImageTransferService } from '../../services/image-transfer.service';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-lista-sugerencias',
@@ -24,7 +25,9 @@ export class ListaSugerenciasComponent implements OnInit {
   items_per_tag = [];
   display_tags  = new Array<boolean>();         // Boolean array to set the tags to be displayed
 
-  constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService){ }
+  itemEndpoint = "localhost:5000/marcadolibre/item/";
+
+  constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){ }
   ngOnInit()
   {
       this.imageUrl = this.transferService.getUrl();
@@ -84,8 +87,6 @@ export class ListaSugerenciasComponent implements OnInit {
       {
         this.items_per_tag.push(Math.round(Math.pow(tag.value, this.probability_exponent)*this.mercadoLibreSuggestions/totalSum));
         this.display_tags.push(this.items_per_tag[this.items_per_tag.length-1] > 0);
-        //console.log("Tag: " + tag.name);
-        //console.log("#: " + this.items_per_tag[this.items_per_tag.length-1]);
       }
   }
 
@@ -102,6 +103,7 @@ export class ListaSugerenciasComponent implements OnInit {
         {
           let tag = this.tags[i].name;
           this.mercadoLibre.findItems(tag, parseInt(item_amount)).subscribe((return_data: any) => {
+          //this.http.get(this.itemEndpoint + tag + "/" + parseInt(item_amount)).subscribe((return_data: any) => {
               var cloth_tags = new Array<string>();
               cloth_tags.push(tag);
 
@@ -110,7 +112,6 @@ export class ListaSugerenciasComponent implements OnInit {
                   //get high res image link for each cloth
                   this.mercadoLibre.itemPicture(cloth.id).subscribe((item_data: any) => {
                       let image_url   = item_data.pictures[0].secure_url;
-                      //let cloth_price = Math.round((parseFloat(cloth.price) * 100) / 100).toFixed(2);
                       let cloth_price = Math.round((parseFloat(cloth.price) * 100) / 100);
 
                       this.sugerencias.push(new Sugerencia(cloth.title,'Mercado Libre',cloth_price, image_url, cloth.permalink, cloth_tags));
@@ -126,8 +127,6 @@ export class ListaSugerenciasComponent implements OnInit {
   // Only if tags placed on them are similar to tags returned by clarify
   filterFromStore(catalogo : Array<Sugerencia>)
   {
-    console.log("Verificar si hay coincidencia en tag de ropa para decidir si agregar los productos de nuestro catalogo");
-
     // Check all suggestions in the catalog
     for(let sugerencia of catalogo)
     {
@@ -152,10 +151,8 @@ export class ListaSugerenciasComponent implements OnInit {
           if(foundMatch)
             break;
       }
-      //  this.sugerencias.push(sugerencia);
     }
   }
-
 
   // Function for displaying price with 2 decimal places
   setTwoNumberDecimal(price: number) : string

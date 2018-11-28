@@ -4,7 +4,7 @@
   <div class="row contenedor_menu_logo">
 
     <!--LOGO APP-->
-    <div class="logo col-xs-12 col-sm-6 col-md-6">
+    <div class="logo col-xs-12 col-sm-5 col-md-5">
       <div class="text-center">
         <a [routerLink]="['']"><img src="../../../assets/navbar/logoblack.png" alt="no disponible"></a>
       </div>
@@ -12,15 +12,25 @@
 
 
     <!--IMAGEN DE PERFIL (EN CASO DE LOGIN)-->
-    <div class="logo col-xs-12 col-sm-2 col-md-2">
+    <div class="logo col-xs-12 col-sm-1 col-md-1">
     </div>
+
 
 
     <!--FORM PARA AGREGAR NUEVOS PRODUCTOS AL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
     <div class="col-xs-1 col-sm-1 col-md-1">
+      <a [routerLink]="['/add-product/']"><img class="img-fluid" src="../../../assets/navbar/add-property.png"></a>
+    </div>
+
+
+    <!--FORM VER Y ELIMINAR PRODUCTOS DEL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
+    <div class="col-xs-1 col-sm-1 col-md-1">
       <a [routerLink]="['/catalog/']"><img class="img-fluid" src="../../../assets/navbar/shirt.png"></a>
     </div>
 
+    <div class="col-xs-1 col-sm-1 col-md-1">
+      <a [routerLink]="['/busca-outfit/']"><img class="img-fluid" src="../../../assets/navbar/search.png"></a>
+    </div>
 
     <!--HAMBURGER MENU (EN CASO DE LOGIN)-->
     <!--div class="logo col-xs-3 col-sm-3 col-md-3" *ngIf="!auth.isAuthenticated()"-->

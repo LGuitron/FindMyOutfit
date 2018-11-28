@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavbarComponent} from '../navbar/navbar.component';
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {Sugerencia} from '../../models/sugerencia'
+import data from '../../../assets/json/sugerencias.json';
 
 @Component({
   selector: 'app-catalogo',
@@ -10,48 +10,21 @@ import {Sugerencia} from '../../models/sugerencia'
 })
 export class CatalogoComponent implements OnInit {
 
-  sugerenciaModel = new Sugerencia("a","b",5,"d","e",["f","g"]);
-  sugerenciaForm = new FormGroup({nombre : new FormControl(),
-                                  tienda : new FormControl(),
-                                  costo : new FormControl(),
-                                  url_imagen : new FormControl(),
-                                  url_sitioweb : new FormControl(),
-                                  tags : new FormControl()
-                                });
 
-  constructor(private formBuilder : FormBuilder)
+
+  sugerencias = new Array<Sugerencia>();
+  constructor()
   {
-    this.createForm();
+    this.sugerencias = data.sugerencias;
   }
 
   ngOnInit() {
   }
 
-  // TODO add validators for each field
-  createForm()
+  // Function for displaying price with 2 decimal places
+  setTwoNumberDecimal(price: number) : string
   {
-    this.sugerenciaForm = this.formBuilder.group(
-    {
-      name   : new FormControl(),
-      tienda : new FormControl(),
-      costo  : new FormControl(),
-      url_imagen : new FormControl(),
-      url_sitioweb : new FormControl(),
-      tags : new FormControl(),
-    }
-    );
+    return Math.round((price * 100) / 100).toFixed(2);
   }
 
-  // Upload form to database
-  enviarFormulario()
-  {
-    let forma = this.sugerenciaForm.value;
-    console.log(forma);
-    this.sugerenciaModel.nombre        = forma.nombre;
-    this.sugerenciaModel.tienda        = forma.tienda;
-    this.sugerenciaModel.costo         = forma.costo;
-    this.sugerenciaModel.url_imagen    = forma.url_imagen;
-    this.sugerenciaModel.url_sitioweb  = forma.url_sitioweb;
-    this.sugerenciaModel.tags          = forma.tags;
-  }
 }

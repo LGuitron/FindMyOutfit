@@ -1,73 +1,20 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center">Catálogo FindMyOutfit</h2>
+      <h3 class="text-center">Catálogo FindMyOutfit</h3>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      Introduce nuevos productos al catálogo de FindMyOutfit en el formulario
-    </div>
-  </div>
-
-  <br><br>
-  <div class="row">
-    <div class="col-md-3"></div>
-    <form [formGroup]="sugerenciaForm" class="col-sm-6 col-md-6 col-lg-6" (ngSubmit)="enviarFormulario()">
-      <div>
-        <label>Nombre del producto:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Nombre del producto"  formControlName="nombre">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
+      <div class="card-deck sugerencias-seccion">
+        <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3" *ngFor="let sugerencia of sugerencias; let i = index">
+            <div class="card h-100 sugerencia">
+                  <img src={{sugerencia.url_imagen}} alt="no disponible">
+                  <p class="nombre">{{sugerencia.nombre}}</p>
+                  <p class="tienda">{{sugerencia.tienda}}</p>
+                  <p class="precio">${{setTwoNumberDecimal(sugerencia.costo)}} MXN</p>
+                  <a href={{sugerencia.url_sitioweb}} class="btn btn-success">Ver en tienda</a>
+                  <button class="btn btn-danger">Quitar producto</button>
+            </div>
       </div>
-      <br>
-
-      <div>
-        <label>Nombre de la tienda:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Nombre de la tienda"  formControlName="tienda">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
-      </div>
-      <br>
-
-      <div>
-        <label>Costo:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Costo"  formControlName="costo">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
-      </div>
-      <br>
-
-      <div>
-        <label>URL Imagen:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="URL Imágen" formControlName="url_imagen">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
-      </div>
-      <br>
-
-      <div>
-        <label>URL sitio web:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="URL sitio de venta"  formControlName="url_sitioweb">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
-      </div>
-      <br>
-
-      <div>
-        <label>Tags:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Tags"  formControlName="tags">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
-      </div>
-      <br>
-
-      <button class="btn btn-primary pull-xs-right" type="submit">Enviar</button>
-    </form>
-    <div class="col-md-3"></div>
-  </div>
 </div>

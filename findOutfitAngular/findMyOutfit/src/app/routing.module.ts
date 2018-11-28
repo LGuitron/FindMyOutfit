@@ -5,6 +5,7 @@ import { BuscaOutfitComponent } from './components/busca-outfit/busca-outfit.com
 import { ListaSugerenciasComponent } from './components/lista-sugerencias/lista-sugerencias.component';
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 const routes: Routes = [
   { path: 'busca-outfit', component: BuscaOutfitComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: '', component: TituloComponent },
   { path: 'profile', component: EditarProfileComponent },
   { path: 'catalog', component: CatalogoComponent },
+  { path: 'add-product', component: AddProductComponent }
 ];
 
 export const RoutingModule: ModuleWithProviders =

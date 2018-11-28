@@ -34,8 +34,4 @@ export class MercadoLibreService {
           return res;
         }));
   }
-
-
-
-
 }
