@@ -36,7 +36,7 @@
     <!--div class="logo col-xs-3 col-sm-3 col-md-3" *ngIf="!auth.isAuthenticated()"-->
     <div class="logo col-xs-3 col-sm-3 col-md-3">
       <mdb-navbar SideClass="navbar navbar-light white" [containerInside]="false" [iconBackground]="['white', 'darken-2']">
-        <mdb-navbar-brand><a class="navbar-brand" href="#">Mi Perfil</a></mdb-navbar-brand>
+        <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/my-profile/']">Mi Perfil</a></mdb-navbar-brand>
 
 
         <links>

@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     EditarProfileComponent,
     CatalogoComponent,
     AddProductComponent,
+    MyProfileComponent,
 
 
   ],

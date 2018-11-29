@@ -1,0 +1,10 @@
+{
+  "name": "mongo",
+  "connector": "mongodb",
+  "url": "",
+  "host": "ds011314.mlab.com",
+  "port": 11314,
+  "user": "user",
+  "password": "password1",
+  "database": "findmyoutfit"
+}

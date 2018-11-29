@@ -1,0 +1,4 @@
+{
+  "users": "http://localhost:5000/users",
+  "suggestions": "http://localhost:5000/suggestions"
+}

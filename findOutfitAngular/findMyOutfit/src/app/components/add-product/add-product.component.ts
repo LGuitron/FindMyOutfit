@@ -10,7 +10,7 @@ import {Sugerencia} from '../../models/sugerencia'
 })
 export class AddProductComponent implements OnInit {
 
-  sugerenciaModel = new Sugerencia("a","b",5,"d","e",["f","g"]);
+  sugerenciaModel = new Sugerencia("adca"," ",0," "," ",[" "," "]);
   sugerenciaForm = new FormGroup({nombre : new FormControl(),
                                   tienda : new FormControl(),
                                   costo : new FormControl(),
@@ -32,7 +32,7 @@ export class AddProductComponent implements OnInit {
   {
     this.sugerenciaForm = this.formBuilder.group(
     {
-      name   : new FormControl(),
+      nombre  : new FormControl(),
       tienda : new FormControl(),
       costo  : new FormControl(),
       url_imagen : new FormControl(),
