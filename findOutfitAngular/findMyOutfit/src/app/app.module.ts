@@ -14,15 +14,23 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
 
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+
 
 //Servicios
 
 import { AuthService } from './services/auth.service';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
+
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+
 
 
 @NgModule({
@@ -35,14 +43,18 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     EditarProfileComponent,
     CatalogoComponent,
     AddProductComponent,
+    LoginComponent,
+    RegistroComponent,
+    RegistroEmpresaComponent,
     MyProfileComponent,
+
 
 
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     RoutingModule,
-    FormsModule,
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,

@@ -4,6 +4,21 @@
   max-width: 100%;
 }
 
+.main .empresa{
+  padding: 80px 0;
+    .titulo {
+      text-align: center;
+      font-weight: 300px;
+      font-size: 32px;
+      color: #000;
+      margin-bottom: 70px;
+    }
+    .texto{
+      text-align: center;
+    }
+
+}
+
 .main .how-works {
 color: #fff;
   padding: 80px 0;
@@ -38,6 +53,8 @@ color: #fff;
     }
   }
 }
+
+
 
 .main .how-works .titulo {
   text-align: center;
@@ -144,6 +161,10 @@ text-align: center;
 .contenedor-btn-find img{
   padding-top:20px;
   width: 200px;
+}
+
+.contenedor-btn-empresa img{
+  width: 250px;
 }
   
 /*MEDIA*/
