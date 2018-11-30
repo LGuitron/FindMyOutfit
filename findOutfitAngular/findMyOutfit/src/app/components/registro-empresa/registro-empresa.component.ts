@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import internalApis from '../../../assets/json/internalApis.json';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -21,7 +24,7 @@ export class RegistroEmpresaComponent implements OnInit {
  	type: new FormControl('company')
   })
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -42,8 +45,7 @@ export class RegistroEmpresaComponent implements OnInit {
 
 
   	let request_body = {
-                            "inputs": [
-                              {
+                           
                                   "name": newJson.name,
 								  "last_names": newJson.last_names,
 								  "email": newJson.email,
@@ -53,13 +55,20 @@ export class RegistroEmpresaComponent implements OnInit {
 								  "description": newJson.description,
 								  "company_role": newJson.company_role,
 								 
-                              }
-                            ]
+                             
                           };
 
  	
  	console.log(request_body);
+ 	console.log(internalApis.users);
 
+ 	 
+
+  	
+  	this.http.post(internalApis.users, request_body).subscribe(response => {
+
+  		}, err => {
+      });
  
   	
 

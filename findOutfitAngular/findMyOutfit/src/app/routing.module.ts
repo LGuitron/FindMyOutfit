@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'add-product', component: AddProductComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'registro-empresa', component: RegistroEmpresaComponent }
+  { path: 'registro-empresa', component: RegistroEmpresaComponent },
   { path: 'my-profile', component: MyProfileComponent }
 ];
 
