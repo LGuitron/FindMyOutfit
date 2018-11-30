@@ -81,30 +81,21 @@ export class ListaSugerenciasComponent implements OnInit {
         var tagArray : Array<string> = new Array<string>();
 
         // Check if tag array exists
-        if(typeof usuario.tags !== 'undefined')
-        {
-          tagArray = usuario.tags;
+        if(typeof usuario.tag_history !== 'undefined'){
+          tagArray = usuario.tag_history;
         }
 
+        var i = 0;
         for (let tag of this.tags)
         {
-          tagArray.push(tag.name);
+          if(this.display_tags[i])
+            tagArray.push(tag.name);
+          i += 1;
         }
-        //console.log(tagArray);
-        usuario.tags = tagArray;
-
-        // Upload updated tag information
-        /*let request_body = {
-                                usuario
-                            };
-
-          console.log(request_body);
-          this.http.post(internalApis.users + "/legl_1995@hotmail.com", request_body).pipe(
-          map(function(res){
-            console.log("RESPUESTA PATCH");
-            console.log(res);
-            return res;
-          }));*/
+        usuario.tag_history = tagArray;
+        this.http.patch(internalApis.users + "/legl_1995@hotmail.com", usuario).subscribe(response =>
+        {},
+        err => {});
       });
   }
 
