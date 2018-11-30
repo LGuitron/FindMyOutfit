@@ -37,22 +37,6 @@
     </div>
 </div>
   <hr>
-
-
-      <!--AGREGAR BARRA DE ORDENAR POR-->
-
-    <!--div class="row" style="padding-bottom: 50px">
-        <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <select class="form-control inputstl">
-                    <option selected="selected">Opciones</option>
-                    <option>Precio: Ascendente</option>
-                    <option>Precio: Descendente</option>
-                    <option>Mejor Calificados</option>
-                </select>
-            </div>
-        <div class="col-md-4"></div>
-    </div-->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -62,13 +46,11 @@
       <div class="card-deck sugerencias-seccion">
         <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3" *ngFor="let sugerencia of sugerencias; let i = index">
             <div class="card h-100 sugerencia">
-                <!--div class="sugerencia"-->
-                    <img src={{sugerencia.url_image}} alt="no disponible">
-                    <p class="nombre">{{sugerencia.name}}</p>
-                    <p class="tienda">{{sugerencia.store}}</p>
-                    <p class="precio">${{setTwoNumberDecimal(sugerencia.cost)}} MXN</p>
-                    <a href={{sugerencia.url_website}} class="btn btn-success">Ver en tienda</a>
-                <!--/div-->
+                <img src={{sugerencia.url_image}} alt="no disponible">
+                <p class="nombre">{{sugerencia.name}}</p>
+                <p class="tienda">{{sugerencia.store}}</p>
+                <p class="precio">${{setTwoNumberDecimal(sugerencia.cost)}} MXN</p>
+                <a href={{sugerencia.url_website}} class="btn btn-success">Ver en tienda</a>
             </div>
       </div>
 </div>

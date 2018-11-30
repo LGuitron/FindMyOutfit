@@ -50,16 +50,31 @@
       </div>
       <br>
 
-      <div>
-        <label>Tags:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Tags"  formControlName="tags">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
+      <!--ADD TAGS TO NEW PRODUCT-->
+      <label>Tags:</label>
+      <div formArrayName="tags">
+        <div *ngFor="let item of sugerenciaForm.controls.tags.controls; let i = index;">
+          <div [formGroupName]="i">
+            <div *ngIf="i<tagCounter">
+              <div *ngIf="i==0 || i<tagCounter-1">
+                <div class="row"><input class="col-sm-6 col-md-6 col-lg-6 form-control form-control-.lg" type="text" formControlName="tag" placeholder="tag"></div>
+              </div>
+              <div *ngIf="i==tagCounter-1 && i!=0">
+                <div class="row"><input class="col-sm-6 col-md-6 col-lg-6 form-control form-control-.lg" type="text" formControlName="tag" placeholder="tag"><a class="col-sm-6 col-md-6 col-lg-6 remove_field" (click)="remove_last_tag()" style="color:blue;">Elimina Tag</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <br>
+      <button type="button" class="btn btn-primary" (click)="add_new_tag()" >Agrega otro Tag</button>
+      <br>
 
-      <button class="btn btn-primary pull-xs-right" type="submit">Enviar</button>
+      <!--BUTTON FOR FORM SUBMISSION-->
+      <button class="btn btn-primary pull-xs-right" type="submit">Agregar al catálogo</button>
     </form>
     <div class="col-md-3"></div>
   </div>
 </div>
+
+
