@@ -62,12 +62,39 @@ export class ListaSugerenciasComponent implements OnInit {
 
             // When the tags have been returned use them to find clothes
             this.getItemsPerTag();
+            this.uploadTagsToUser();
             this.getClothesWithTag();
             this.filterFromStore(catalogo);
           });
       }
     );
   }
+
+  // Function for uploading user tags to user's history
+  // TODO do this for the current user
+  uploadTagsToUser()
+  {
+
+      this.http.get(internalApis.users + "/legl_1995@hotmail.com").subscribe((usuario: any)=>{
+
+        var tagArray : Array<string> = new Array<string>();
+
+        // Check if tag array exists
+        if(typeof usuario.tags !== 'undefined')
+        {
+          tagArray = usuario.tags;
+          console.log("YYYY");
+        }
+
+        for (let tag of this.tags)
+        {
+          tagArray.push(tag.name);
+        }
+        console.log(tagArray);
+      });
+  }
+
+
 
   getItemsPerTag()
   {
