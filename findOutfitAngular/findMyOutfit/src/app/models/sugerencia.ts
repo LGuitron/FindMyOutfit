@@ -1,17 +1,17 @@
 export class Sugerencia {
-  nombre: string;
-  tienda: string;
-  costo: number
-  url_imagen: string;
-  url_sitioweb: string;
+  name: string;
+  store: string;
+  cost: number
+  url_image: string;
+  url_website: string;
   tags: Array<string>
 
-  constructor(nombre: string, tienda: string, costo: number, url_imagen: string, url_sitioweb: string, tags : Array<string>){
-      this.nombre = nombre;
-      this.tienda = tienda;
-      this.costo = costo;
-      this.url_imagen = url_imagen;
-      this.url_sitioweb = url_sitioweb;
+  constructor(name: string, store: string, cost: number, url_image: string, url_website: string, tags : Array<string>){
+      this.name = name;
+      this.store = store;
+      this.cost = cost;
+      this.url_image = url_image;
+      this.url_website = url_website;
       this.tags = tags;
   }
 }

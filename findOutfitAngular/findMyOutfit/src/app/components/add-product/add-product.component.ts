@@ -11,11 +11,11 @@ import {Sugerencia} from '../../models/sugerencia'
 export class AddProductComponent implements OnInit {
 
   sugerenciaModel = new Sugerencia("adca"," ",0," "," ",[" "," "]);
-  sugerenciaForm = new FormGroup({nombre : new FormControl(),
-                                  tienda : new FormControl(),
-                                  costo : new FormControl(),
-                                  url_imagen : new FormControl(),
-                                  url_sitioweb : new FormControl(),
+  sugerenciaForm = new FormGroup({name : new FormControl(),
+                                  store : new FormControl(),
+                                  cost : new FormControl(),
+                                  url_image : new FormControl(),
+                                  url_website : new FormControl(),
                                   tags : new FormControl()
                                 });
 
@@ -32,11 +32,11 @@ export class AddProductComponent implements OnInit {
   {
     this.sugerenciaForm = this.formBuilder.group(
     {
-      nombre  : new FormControl(),
-      tienda : new FormControl(),
-      costo  : new FormControl(),
-      url_imagen : new FormControl(),
-      url_sitioweb : new FormControl(),
+      name  : new FormControl(),
+      store : new FormControl(),
+      cost  : new FormControl(),
+      url_image : new FormControl(),
+      url_website : new FormControl(),
       tags : new FormControl(),
     }
     );
@@ -47,11 +47,11 @@ export class AddProductComponent implements OnInit {
   {
     let forma = this.sugerenciaForm.value;
     console.log(forma);
-    this.sugerenciaModel.nombre        = forma.nombre;
-    this.sugerenciaModel.tienda        = forma.tienda;
-    this.sugerenciaModel.costo         = forma.costo;
-    this.sugerenciaModel.url_imagen    = forma.url_imagen;
-    this.sugerenciaModel.url_sitioweb  = forma.url_sitioweb;
+    this.sugerenciaModel.name          = forma.name;
+    this.sugerenciaModel.store         = forma.store;
+    this.sugerenciaModel.cost          = forma.cost;
+    this.sugerenciaModel.url_image     = forma.url_image;
+    this.sugerenciaModel.url_website   = forma.url_website;
     this.sugerenciaModel.tags          = forma.tags;
   }
 }

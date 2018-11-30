@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import {Sugerencia} from '../../models/sugerencia';
-import data from '../../../assets/json/sugerencias.json';
 import externalApis from '../../../assets/json/externalApis.json';
+import internalApis from '../../../assets/json/internalApis.json';
 import {NavbarComponent} from '../navbar/navbar.component';
 import { ClarifaiService } from '../../services/clarifai.service';
 import { MercadoLibreService } from '../../services/mercado-libre.service';
@@ -46,7 +46,10 @@ export class ListaSugerenciasComponent implements OnInit {
       this.sugerencias = new Array<Sugerencia>();
 
       // Use Clarifai Service
-      this.getTags(data.sugerencias);
+      // Get all suggestions from DB (catalog)
+      this.http.get(internalApis.suggestions).subscribe((catalogo: any)=>{
+          this.getTags(catalogo);
+      });
   }
 
   getTags(catalogo : Array<Sugerencia>)
