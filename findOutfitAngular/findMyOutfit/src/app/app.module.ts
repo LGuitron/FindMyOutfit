@@ -24,9 +24,13 @@ import { AuthService } from './services/auth.service';
 
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
+
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+
 
 
 @NgModule({
@@ -42,6 +46,8 @@ import { RegistroEmpresaComponent } from './components/registro-empresa/registro
     LoginComponent,
     RegistroComponent,
     RegistroEmpresaComponent,
+    MyProfileComponent,
+
 
 
   ],

@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import {Sugerencia} from '../../models/sugerencia';
-import data from '../../../assets/json/sugerencias.json';
 import externalApis from '../../../assets/json/externalApis.json';
+import internalApis from '../../../assets/json/internalApis.json';
 import {NavbarComponent} from '../navbar/navbar.component';
 import { ClarifaiService } from '../../services/clarifai.service';
 import { MercadoLibreService } from '../../services/mercado-libre.service';
@@ -46,7 +46,10 @@ export class ListaSugerenciasComponent implements OnInit {
       this.sugerencias = new Array<Sugerencia>();
 
       // Use Clarifai Service
-      this.getTags(data.sugerencias);
+      // Get all suggestions from DB (catalog)
+      this.http.get(internalApis.suggestions).subscribe((catalogo: any)=>{
+          this.getTags(catalogo);
+      });
   }
 
   getTags(catalogo : Array<Sugerencia>)
@@ -59,12 +62,39 @@ export class ListaSugerenciasComponent implements OnInit {
 
             // When the tags have been returned use them to find clothes
             this.getItemsPerTag();
+            this.uploadTagsToUser();
             this.getClothesWithTag();
             this.filterFromStore(catalogo);
           });
       }
     );
   }
+
+  // Function for uploading user tags to user's history
+  // TODO do this for the current user
+  uploadTagsToUser()
+  {
+
+      this.http.get(internalApis.users + "/legl_1995@hotmail.com").subscribe((usuario: any)=>{
+
+        var tagArray : Array<string> = new Array<string>();
+
+        // Check if tag array exists
+        if(typeof usuario.tags !== 'undefined')
+        {
+          tagArray = usuario.tags;
+          console.log("YYYY");
+        }
+
+        for (let tag of this.tags)
+        {
+          tagArray.push(tag.name);
+        }
+        console.log(tagArray);
+      });
+  }
+
+
 
   getItemsPerTag()
   {

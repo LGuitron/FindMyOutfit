@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NavbarComponent} from '../navbar/navbar.component';
 import {Sugerencia} from '../../models/sugerencia'
-import data from '../../../assets/json/sugerencias.json';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import internalApis from '../../../assets/json/internalApis.json';
 
 @Component({
   selector: 'app-catalogo',
@@ -10,12 +11,12 @@ import data from '../../../assets/json/sugerencias.json';
 })
 export class CatalogoComponent implements OnInit {
 
-
-
   sugerencias = new Array<Sugerencia>();
-  constructor()
+  constructor(private http: HttpClient)
   {
-    this.sugerencias = data.sugerencias;
+      this.http.get(internalApis.suggestions).subscribe((catalogo: any)=>{
+          this.sugerencias = catalogo;
+      });
   }
 
   ngOnInit() {
