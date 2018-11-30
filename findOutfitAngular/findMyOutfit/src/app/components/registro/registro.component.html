@@ -1,0 +1,58 @@
+
+
+<div class="container">
+  <div class="row contenedor_menu_logo">
+    <!--LOGO APP-->
+    <div class="logo col-xs-12 col-sm-5 col-md-5">
+      <div class="text-center">
+        <a [routerLink]="['']"><img src="../../../assets/navbar/logoblack.png" alt="no disponible"></a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+
+        <section>
+            <div class="container">
+                <form [formGroup]="registerForm">
+                    <h3 class="titulo"> Registro </h3>
+                <div class="row">
+                    <div class="col">
+                      <input formControlName="email" type="email" name="email" class="form-control" placeholder="Correo">
+                    </div>
+                </div>
+                  <div class="row">
+                    <div class="col">
+                      <input formControlName="name" type="text" class="form-control" name="name" placeholder="Nombre">
+                    </div>
+                    <div class="col">
+                      <input formControlName="lastname"  type="text" class="form-control" name="lastname" placeholder="Apellidos">
+                    </div>
+                  </div>
+                <div class="row">
+                    <div class="col">
+                      <input formControlName="password" type="password" name="password" class="form-control" placeholder="Contraseña">
+                    </div>
+                    <div class="col">
+                      <input formControlName="cpass"  type="password" name="password" class="form-control" placeholder="Confirmar contraseña">
+                    </div>
+                  </div>
+                <div class="form-row text-center">
+                    <div class="col-sm">
+                        <button type="submit" class="btn btn-dark" (click)="register()">Registrarme</button>
+                    </div>
+                </div>
+                 <div class="row text-center justify-content-md-center">
+                    <div class="col-sm">
+                    <small>¿Ya tienes una cuenta?</small> 
+                    </div>
+                </div>
+                <div class="row  text-center justify-content-md-center">
+                  <div class="col-sm">
+                     <small><a [routerLink]="['/login/']">Inicia sesión</a></small>  
+                     </div>
+                </div>
+                </form>
+            </div>
+        </section>

@@ -6,6 +6,9 @@ import { ListaSugerenciasComponent } from './components/lista-sugerencias/lista-
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
 
 const routes: Routes = [
   { path: 'busca-outfit', component: BuscaOutfitComponent },
@@ -13,7 +16,10 @@ const routes: Routes = [
   { path: '', component: TituloComponent },
   { path: 'profile', component: EditarProfileComponent },
   { path: 'catalog', component: CatalogoComponent },
-  { path: 'add-product', component: AddProductComponent }
+  { path: 'add-product', component: AddProductComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'registro-empresa', component: RegistroEmpresaComponent }
 ];
 
 export const RoutingModule: ModuleWithProviders =

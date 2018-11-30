@@ -10,7 +10,8 @@
 				<div class="menu col-xs-12 col-sm-12 col-md-6 text-center">
           			<!--<a [routerLink]="['/registro/']">Regístrate</a>
 					<a [routerLink]="['/login/']">Iniciar Sesión</a>-->
-					<a (click)="login()">Iniciar Sesión/Registrarse</a>
+					<a [routerLink]="['/login/']">Iniciar Sesión</a>
+					<a [routerLink]="['/registro/']">Registrarse</a>
 
 				</div>
 			</div>
@@ -86,6 +87,28 @@
 					</div>
 
 				</div>
+			</div>
+		</section>
+
+
+
+		<section class="empresa">
+			<div class="container content">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="titulo">¿Eres empresa?</h3>
+					</div>
+                    <div class="col-md-6">
+						<h5 class="texto">¡Como empresa puedes registrar tus propios artículos para que miles de personas lo puedan comprar!</h5>
+					</div>
+					<div class="col-md-6">
+						<div class="contenedor-btn-empresa text-center">
+						<a [routerLink]="['/registro-empresa/']"><img src="assets/titulo/botonempresas.png" alt="no disponible"></a>
+					</div>
+					</div>
+
+				</div>
+				
 			</div>
 		</section>
 	</section>

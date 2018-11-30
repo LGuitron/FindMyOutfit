@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row contenedor_menu_logo">
+    <!--LOGO APP-->
+    <div class="logo col-xs-12 col-sm-5 col-md-5">
+      <div class="text-center">
+        <a [routerLink]="['']"><img src="../../../assets/navbar/logoblack.png" alt="no disponible"></a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+
+            <div class="container">
+                <h3 class="text-center">Inicia sesión</h3>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-sm text-center"><div class="fb-login-button centered" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div></div>
+                </div>
+                
+                <form [formGroup]="loginForm">
+
+                  <div class="form-group row justify-content-md-center">
+                    <div class="col-md-auto">
+                      <input formControlName="email" type="email" class="form-control" placeholder="Correo" id="correo">
+                    </div>
+                  </div>
+                  <div class="form-group row justify-content-md-center">
+                    <div class="col-md-auto">
+                      <input formControlName="password" type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+                    </div>
+                  </div>
+
+                <div class="form-row text-center">
+                    <div class="col-sm">
+                        <button (click)="login()" type="submit" class="btn btn-dark">Entrar</button>
+                    </div>
+                </div>
+
+                </form>
+    <div class="row text-center justify-content-md-center">
+                    <div class="col-sm">
+                    <small>¿Aún no tienes cuenta?</small> 
+                    </div>
+                </div>
+                <div class="row  text-center justify-content-md-center">
+                  <div class="col-sm">
+                     <small><a [routerLink]="['/registro/']">Registro</a></small>  
+                     </div>
+                </div>
+            </div>
+        
