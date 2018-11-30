@@ -8,6 +8,7 @@ import { MercadoLibreService } from '../../services/mercado-libre.service';
 import { ImageTransferService } from '../../services/image-transfer.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-sugerencias',
@@ -83,14 +84,27 @@ export class ListaSugerenciasComponent implements OnInit {
         if(typeof usuario.tags !== 'undefined')
         {
           tagArray = usuario.tags;
-          console.log("YYYY");
         }
 
         for (let tag of this.tags)
         {
           tagArray.push(tag.name);
         }
-        console.log(tagArray);
+        //console.log(tagArray);
+        usuario.tags = tagArray;
+
+        // Upload updated tag information
+        /*let request_body = {
+                                usuario
+                            };
+
+          console.log(request_body);
+          this.http.post(internalApis.users + "/legl_1995@hotmail.com", request_body).pipe(
+          map(function(res){
+            console.log("RESPUESTA PATCH");
+            console.log(res);
+            return res;
+          }));*/
       });
   }
 

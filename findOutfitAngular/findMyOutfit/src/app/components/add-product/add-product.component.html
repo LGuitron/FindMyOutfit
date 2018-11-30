@@ -13,14 +13,14 @@
     <form [formGroup]="sugerenciaForm" class="col-sm-6 col-md-6 col-lg-6" (ngSubmit)="enviarFormulario()">
       <div>
         <label>Nombre del producto:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Nombre del producto"  formControlName="nombre">
+        <input class="form-control form-control-.lg" type="text" placeholder="Nombre del producto"  formControlName="name">
         <!--div *ngIf="name.invalid">Nombre muy corto</div-->
       </div>
       <br>
 
       <div>
         <label>Nombre de la tienda:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Nombre de la tienda"  formControlName="tienda">
+        <input class="form-control form-control-.lg" type="text" placeholder="Nombre de la tienda"  formControlName="store">
         <!--div *ngIf="name.invalid">Nombre muy corto</div>
         <div *ngIf="name.required">Campo requerido</div-->
       </div>
@@ -28,7 +28,7 @@
 
       <div>
         <label>Costo:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Costo"  formControlName="costo">
+        <input class="form-control form-control-.lg" type="text" placeholder="Costo"  formControlName="cost">
         <!--div *ngIf="name.invalid">Nombre muy corto</div>
         <div *ngIf="name.required">Campo requerido</div-->
       </div>
@@ -36,7 +36,7 @@
 
       <div>
         <label>URL Imagen:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="URL Imágen" formControlName="url_imagen">
+        <input class="form-control form-control-.lg" type="text" placeholder="URL Imágen" formControlName="url_image">
         <!--div *ngIf="name.invalid">Nombre muy corto</div>
         <div *ngIf="name.required">Campo requerido</div-->
       </div>
@@ -44,7 +44,7 @@
 
       <div>
         <label>URL sitio web:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="URL sitio de venta"  formControlName="url_sitioweb">
+        <input class="form-control form-control-.lg" type="text" placeholder="URL sitio de venta"  formControlName="url_website">
         <!--div *ngIf="name.invalid">Nombre muy corto</div>
         <div *ngIf="name.required">Campo requerido</div-->
       </div>
