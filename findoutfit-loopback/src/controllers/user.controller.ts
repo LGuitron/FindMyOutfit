@@ -143,14 +143,7 @@ export class UserController {
                                 "code": "BAD_CREDENTIALS"
                         }};
         
-    var successResponse = {"success": 
-                                {
-                                "statusCode": "200",
-                                "name": "Login Success",
-                                "message": "Login Success",
-                                "code": "OK"
-                                }
-                         };
+
      try{
             var user : User = await this.userRepository.findById(credentials.email);
      }
@@ -162,6 +155,17 @@ export class UserController {
      // Return error for wrong username or password
      if(user != null && user.password != Md5.init(credentials.password))
         return errorResponse;
+     
+     
+    var successResponse = {"success": 
+                                    {
+                                    "statusCode": "200",
+                                    "name": "Login Success",
+                                    "message": "Login Success",
+                                    "code": "OK"
+                                    },
+                            "user" : credentials.email
+                         };
      return successResponse;
   }
 }
