@@ -8,13 +8,13 @@
   </div>
       <div class="card-deck sugerencias-seccion">
         <div class="sugerencias col-sm-6 col-md-6 col-lg-4 mb-3" *ngFor="let sugerencia of sugerencias; let i = index">
-            <div class="card h-100 sugerencia">
+            <div class="card h-100 sugerencia" id={{sugerencia.id}}>
                   <img src={{sugerencia.url_image}} alt="no disponible">
                   <p class="nombre">{{sugerencia.name}}</p>
                   <p class="tienda">{{sugerencia.store}}</p>
                   <p class="precio">${{setTwoNumberDecimal(sugerencia.cost)}} MXN</p>
                   <a href={{sugerencia.url_website}} class="btn btn-success">Ver en tienda</a>
-                  <button class="btn btn-danger">Quitar producto</button>
+                  <button type="submit" class="btn btn-danger" (click)="delete_product(sugerencia.id)">Quitar producto</button>
             </div>
       </div>
 </div>

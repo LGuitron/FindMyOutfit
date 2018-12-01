@@ -12,19 +12,20 @@ import internalApis from '../../../assets/json/internalApis.json';
 })
 export class AddProductComponent implements OnInit {
 
-  sugerenciaModel = new Sugerencia("adca"," ",0," "," ",[" "," "]);
-
   // Counter for tags
   tagCounter : number;
   max_fields : number;
   sugerenciaForm : FormGroup;
   tags : FormArray;
 
+  submitted : boolean;
+
   constructor(private formBuilder : FormBuilder, private http: HttpClient)
   {
     this.max_fields = 10;
     this.tagCounter = 1;
     this.createForm();
+    this.submitted = false;
   }
 
   // Initialize JQuery for adding new tags
@@ -35,32 +36,33 @@ export class AddProductComponent implements OnInit {
   {
     this.sugerenciaForm = this.formBuilder.group(
     {
-      name  : new FormControl(),
-      store : new FormControl(),
-      cost  : new FormControl(),
-      url_image : new FormControl(),
-      url_website : new FormControl(),
-      tags : this.formBuilder.array([this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem(),
-                                     this.createArrayItem()
+      name  : new FormControl(null, Validators.required),
+      store : new FormControl(null, Validators.required),
+      cost  : new FormControl(null, Validators.required),
+      url_image : new FormControl(null, Validators.required),
+      url_website : new FormControl(null, Validators.required),
+      tags : this.formBuilder.array([this.createArrayItem(true),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false),
+                                     this.createArrayItem(false)
                                     ])
     });
-    console.log(this.sugerenciaForm.controls.tags);
+    console.log("FORM");
+    console.log(this.sugerenciaForm);
   }
 
   // Create new items in array of tags
-  createArrayItem(): FormGroup
+  createArrayItem(isRequired : boolean): FormGroup
   {
-    return this.formBuilder.group({
-      tag: ''
-    });
+    if(isRequired)
+      return this.formBuilder.group({tag: ['', Validators.required]});
+    return this.formBuilder.group({tag: ''});
   }
 
   // Function for adding more tag items
@@ -79,10 +81,27 @@ export class AddProductComponent implements OnInit {
   }
 
 
+  // Function for allowing writing numbers only
+    numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
+
+
   // Upload form to database
   // TODO add id of the current user
   enviarFormulario()
   {
+    if(!this.sugerenciaForm.valid){
+  		console.log("Invalid Form");
+      this.submitted = true;
+  		return;
+  	}
+
     var jsonSubmit = this.sugerenciaForm.value;
     var tagArray : Array<string> = new Array<string>();
 
