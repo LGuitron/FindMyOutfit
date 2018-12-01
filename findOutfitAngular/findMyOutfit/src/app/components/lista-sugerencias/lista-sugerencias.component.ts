@@ -164,23 +164,28 @@ export class ListaSugerenciasComponent implements OnInit {
     {
       let foundMatch : boolean = false;
 
-      // Check all tags found from clarifai service
+      // Check all tags found from clarifai service currently displayed
+      let i = 0;
       for(let tag of this.tags)
       {
-
-          // Check all of the tags for the current item
-          for (let current_item_tag of sugerencia.tags)
+          if(this.display_tags[i])
           {
-              // Comparar tags de clarifai y tags de sugerencia actual
-              if(tag.name.toLowerCase().includes(current_item_tag.toLowerCase()))
-              {
-                this.sugerencias.push(sugerencia);
-                foundMatch = true;
-                break;
-              }
+
+            // Check all of the tags for the current item
+            for (let current_item_tag of sugerencia.tags)
+            {
+                // Comparar tags de clarifai y tags de sugerencia actual
+                if(tag.name.toLowerCase().includes(current_item_tag.toLowerCase()))
+                {
+                  this.sugerencias.push(sugerencia);
+                  foundMatch = true;
+                  break;
+                }
+            }
+            if(foundMatch)
+              break;
           }
-          if(foundMatch)
-            break;
+          i++;
       }
     }
   }
