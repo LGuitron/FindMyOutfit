@@ -3,7 +3,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import internalApis from '../../../assets/json/internalApis.json';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-
+import {Md5} from "md5-typescript";
 
 @Component({
   selector: 'app-registro-empresa',
@@ -24,7 +24,7 @@ export class RegistroEmpresaComponent implements OnInit {
  	type: new FormControl('company')
   })
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
   }
@@ -39,38 +39,38 @@ export class RegistroEmpresaComponent implements OnInit {
 
   	var newJson = this.registerCompanyForm.value;
   	delete newJson['cpass'];
-  	
-  	
+
+
 
 
 
   	let request_body = {
-                           
-                                  "name": newJson.name,
+
+                  "name": newJson.name,
 								  "last_names": newJson.last_names,
 								  "email": newJson.email,
-								  "password": newJson.password,
+								  "password": Md5.init(newJson.password),
 								  "type": newJson.type,
 								  "company": newJson.company,
 								  "description": newJson.description,
 								  "company_role": newJson.company_role,
-								 
-                             
+
+
                           };
 
- 	
+
  	console.log(request_body);
  	console.log(internalApis.users);
 
- 	 
 
-  	
+
+
   	this.http.post(internalApis.users, request_body).subscribe(response => {
 
   		}, err => {
       });
- 
-  	
+
+
 
   }
 

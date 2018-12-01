@@ -16,7 +16,9 @@ import {
   requestBody,
 } from '@loopback/rest';
 import {User} from '../models';
+import {LoginInfo} from '../models';
 import {UserRepository} from '../repositories';
+import {Md5} from "md5-typescript";
 
 export class UserController {
   constructor(
@@ -118,5 +120,48 @@ export class UserController {
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.userRepository.deleteById(id);
+  }
+  
+  
+  // Endpoint to be used for login
+  @post('/users/login', {
+    responses: {
+      '200': {
+        description: 'User Login success',
+      },
+      '401':{
+        description: 'Wrong email of password'
+      }
+    },
+  })
+  async login(@requestBody() credentials: LoginInfo): Promise<any> {
+    
+     var errorResponse = {"error": {
+                                "statusCode": "401",
+                                "name": "Error",
+                                "message": "Wrong email or password",
+                                "code": "BAD_CREDENTIALS"
+                        }};
+        
+    var successResponse = {"success": 
+                                {
+                                "statusCode": "200",
+                                "name": "Login Success",
+                                "message": "Login Success",
+                                "code": "OK"
+                                }
+                         };
+     try{
+            var user : User = await this.userRepository.findById(credentials.email);
+     }
+     catch{
+         // Non-existent user
+         return errorResponse;
+    }
+    
+     // Return error for wrong username or password
+     if(user != null && user.password != Md5.init(credentials.password))
+        return errorResponse;
+     return successResponse;
   }
 }
