@@ -130,7 +130,7 @@ export class UserController {
         description: 'User Login success',
       },
       '401':{
-        description: 'Wrong email of password'
+        description: 'Wrong email or password'
       }
     },
   })
@@ -164,7 +164,8 @@ export class UserController {
                                     "message": "Login Success",
                                     "code": "OK"
                                     },
-                            "user" : credentials.email
+                            "user" : credentials.email,
+                            "type" : user.type
                          };
      return successResponse;
   }

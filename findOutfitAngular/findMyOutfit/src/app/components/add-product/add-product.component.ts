@@ -4,16 +4,19 @@ import {FormGroup, FormControl, FormBuilder, FormArray , Validators} from '@angu
 import {Sugerencia} from '../../models/sugerencia'
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import internalApis from '../../../assets/json/internalApis.json';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
+
 export class AddProductComponent implements OnInit {
 
   // Counter for tags
   user_email : string;
+  user_type : string;
   tagCounter : number;
   max_fields : number;
   sugerenciaForm : FormGroup;
@@ -23,7 +26,7 @@ export class AddProductComponent implements OnInit {
   addSuccess : boolean;
 
 
-  constructor(private formBuilder : FormBuilder, private http: HttpClient)
+  constructor(private formBuilder : FormBuilder, private http: HttpClient, private router: Router)
   {
     this.max_fields = 10;
     this.tagCounter = 1;
@@ -31,9 +34,13 @@ export class AddProductComponent implements OnInit {
     this.submitted = false;
     this.addSuccess = false;
     this.user_email = localStorage.getItem("user_email");
+    this.user_type = localStorage.getItem("user_type");
+
+    // Block access to non company users
+    if(this.user_email == null || this.user_type != "company")
+      this.router.navigate(['']);
   }
 
-  // Initialize JQuery for adding new tags
   ngOnInit() {}
 
   // TODO add validators for each field

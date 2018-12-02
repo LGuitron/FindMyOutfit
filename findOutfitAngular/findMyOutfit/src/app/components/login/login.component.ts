@@ -48,8 +48,10 @@ export class LoginComponent implements OnInit {
   	this.http.post("http://localhost:5000/users/login", request_body).subscribe((response:any) => {
   			if(response.status.statusCode == 200){
   				var user_email = response.user;
+          var user_type  = response.type;
   				console.log(user_email);
   				localStorage.setItem("user_email", user_email);
+          localStorage.setItem("user_type", user_type);
           this.router.navigate(['busca-outfit']);
   			}
         else{
