@@ -8,6 +8,7 @@ import { MercadoLibreService } from '../../services/mercado-libre.service';
 import { ImageTransferService } from '../../services/image-transfer.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-sugerencias',
@@ -62,12 +63,43 @@ export class ListaSugerenciasComponent implements OnInit {
 
             // When the tags have been returned use them to find clothes
             this.getItemsPerTag();
+            this.uploadTagsToUser();
             this.getClothesWithTag();
             this.filterFromStore(catalogo);
           });
       }
     );
   }
+
+  // Function for uploading user tags to user's history
+  // TODO do this for the current user
+  uploadTagsToUser()
+  {
+
+      this.http.get(internalApis.users + "/legl_1995@hotmail.com").subscribe((usuario: any)=>{
+
+        var tagArray : Array<string> = new Array<string>();
+
+        // Check if tag array exists
+        if(typeof usuario.tag_history !== 'undefined'){
+          tagArray = usuario.tag_history;
+        }
+
+        var i = 0;
+        for (let tag of this.tags)
+        {
+          if(this.display_tags[i])
+            tagArray.push(tag.name);
+          i += 1;
+        }
+        usuario.tag_history = tagArray;
+        this.http.patch(internalApis.users + "/legl_1995@hotmail.com", usuario).subscribe(response =>
+        {},
+        err => {});
+      });
+  }
+
+
 
   getItemsPerTag()
   {
@@ -132,23 +164,28 @@ export class ListaSugerenciasComponent implements OnInit {
     {
       let foundMatch : boolean = false;
 
-      // Check all tags found from clarifai service
+      // Check all tags found from clarifai service currently displayed
+      let i = 0;
       for(let tag of this.tags)
       {
-
-          // Check all of the tags for the current item
-          for (let current_item_tag of sugerencia.tags)
+          if(this.display_tags[i])
           {
-              // Comparar tags de clarifai y tags de sugerencia actual
-              if(tag.name.toLowerCase().includes(current_item_tag.toLowerCase()))
-              {
-                this.sugerencias.push(sugerencia);
-                foundMatch = true;
-                break;
-              }
+
+            // Check all of the tags for the current item
+            for (let current_item_tag of sugerencia.tags)
+            {
+                // Comparar tags de clarifai y tags de sugerencia actual
+                if(tag.name.toLowerCase().includes(current_item_tag.toLowerCase()))
+                {
+                  this.sugerencias.push(sugerencia);
+                  foundMatch = true;
+                  break;
+                }
+            }
+            if(foundMatch)
+              break;
           }
-          if(foundMatch)
-            break;
+          i++;
       }
     }
   }

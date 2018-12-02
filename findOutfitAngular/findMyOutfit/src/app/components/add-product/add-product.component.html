@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container">
+<div class="card">
+<div class="card-body">
 
   <div class="row">
     <div class="col-md-12">
@@ -11,55 +13,182 @@
   <div class="row">
     <div class="col-md-3"></div>
     <form [formGroup]="sugerenciaForm" class="col-sm-6 col-md-6 col-lg-6" (ngSubmit)="enviarFormulario()">
-      <div>
-        <label>Nombre del producto:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Nombre del producto"  formControlName="nombre">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div-->
+      <!--NAME-->
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-lg-5">
+          <label>Nombre del producto:</label>
+        </div>
+        <div class="col-sm-7 col-md-7 col-lg-7">
+          <input class="form-control form-control-.lg" type="text" placeholder="Nombre del producto"  formControlName="name">
+        </div>
+      </div>
+
+      <!--VALIDATOR REQUIRED-->
+      <div *ngIf="submitted && sugerenciaForm.controls.name.errors != null && sugerenciaForm.controls.name.errors.required">
+        <div class="row">
+          <div class="col-sm-5 col-md-5 col-lg-5"></div>
+          <div class="col-sm-7 col-md-7 col-lg-7 text-center" style="color:red;">
+              Campo requerido
+          </div>
+        </div>
       </div>
       <br>
 
-      <div>
-        <label>Nombre de la tienda:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Nombre de la tienda"  formControlName="tienda">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
+      <!--STORE-->
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-lg-5">
+            <label>Nombre de la tienda:</label>
+        </div>
+        <div class="col-sm-7 col-md-7 col-lg-7">
+          <input class="form-control form-control-.lg" type="text" placeholder="Nombre de la tienda"  formControlName="store">
+        </div>
+      </div>
+
+      <!--VALIDATOR REQUIRED-->
+      <div *ngIf="submitted && sugerenciaForm.controls.store.errors != null && sugerenciaForm.controls.store.errors.required">
+        <div class="row">
+          <div class="col-sm-5 col-md-5 col-lg-5"></div>
+          <div class="col-sm-7 col-md-7 col-lg-7 text-center" style="color:red;">
+              Campo requerido
+          </div>
+        </div>
       </div>
       <br>
 
-      <div>
-        <label>Costo:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Costo"  formControlName="costo">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
+
+      <!--COST-->
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-lg-5">
+          <label>Costo:</label>
+        </div>
+        <div class="col-sm-7 col-md-7 col-lg-7">
+          <input (keypress)="numberOnly($event)" class="form-control form-control-.lg" type="text" placeholder="Costo (MXN)"  formControlName="cost">
+        </div>
+      </div>
+
+      <!--VALIDATOR REQUIRED-->
+      <div *ngIf="submitted && sugerenciaForm.controls.cost.errors != null && sugerenciaForm.controls.cost.errors.required">
+        <div class="row">
+          <div class="col-sm-5 col-md-5 col-lg-5"></div>
+          <div class="col-sm-7 col-md-7 col-lg-7 text-center" style="color:red;">
+              Campo requerido
+          </div>
+        </div>
       </div>
       <br>
 
-      <div>
-        <label>URL Imagen:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="URL Imágen" formControlName="url_imagen">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
+      <!--URL IMAGE-->
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-lg-5">
+          <label>URL Imagen:</label>
+        </div>
+        <div class="col-sm-7 col-md-7 col-lg-7">
+          <input class="form-control form-control-.lg" type="text" placeholder="URL Imágen" formControlName="url_image">
+        </div>
+      </div>
+
+      <!--VALIDATOR REQUIRED-->
+      <div *ngIf="submitted && sugerenciaForm.controls.url_image.errors != null && sugerenciaForm.controls.url_image.errors.required">
+        <div class="row">
+          <div class="col-sm-5 col-md-5 col-lg-5"></div>
+          <div class="col-sm-7 col-md-7 col-lg-7 text-center" style="color:red;">
+              Campo requerido
+          </div>
+        </div>
       </div>
       <br>
 
-      <div>
-        <label>URL sitio web:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="URL sitio de venta"  formControlName="url_sitioweb">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
+      <!--URL WEBSITE-->
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-lg-5">
+          <label>URL sitio web:</label>
+        </div>
+        <div class="col-sm-7 col-md-7 col-lg-7">
+          <input class="form-control form-control-.lg" type="text" placeholder="URL sitio de venta"  formControlName="url_website">
+        </div>
+      </div>
+
+      <!--VALIDATOR REQUIRED-->
+      <div *ngIf="submitted && sugerenciaForm.controls.url_website.errors != null && sugerenciaForm.controls.url_website.errors.required">
+        <div class="row">
+          <div class="col-sm-5 col-md-5 col-lg-5"></div>
+          <div class="col-sm-7 col-md-7 col-lg-7 text-center" style="color:red;">
+              Campo requerido
+          </div>
+        </div>
       </div>
       <br>
 
-      <div>
-        <label>Tags:</label>
-        <input class="form-control form-control-.lg" type="text" placeholder="Tags"  formControlName="tags">
-        <!--div *ngIf="name.invalid">Nombre muy corto</div>
-        <div *ngIf="name.required">Campo requerido</div-->
+      <!--ADD TAGS TO NEW PRODUCT-->
+      <div formArrayName="tags">
+        <div *ngFor="let item of sugerenciaForm.controls.tags.controls; let i = index;">
+          <div [formGroupName]="i">
+            <div *ngIf="i<tagCounter">
+
+              <!--FIRST TAG-->
+              <div *ngIf="i==0">
+                <div class="row">
+                  <span class="col-sm-5 col-md-5 col-lg-5">
+                      <label>Tags:</label>
+                      <button type="button" class="input-group-button btn btn-primary" (click)="add_new_tag()" >+</button>
+                  </span>
+                  <span class="col-sm-7 col-md-7 col-lg-7">
+                    <input class="form-control form-control-.lg" type="text" formControlName="tag" placeholder="tag {{i+1}}">
+                  </span>
+                </div>
+
+                <!--VALIDATOR REQUIRED-->
+                <div *ngIf="submitted && sugerenciaForm.controls.tags.controls[0].controls.tag.errors != null && sugerenciaForm.controls.tags.controls[0].controls.tag.errors.required">
+                  <div class="row">
+                    <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                    <div class="col-sm-7 col-md-7 col-lg-7 text-center" style="color:red;">
+                        Campo requerido
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--MIDDLE TAGS-->
+              <div *ngIf="i>0 && i<tagCounter-1">
+                <div class="row">
+                  <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                  <div class="col-sm-7 col-md-7 col-lg-7">
+                    <input class="form-control form-control-.lg" type="text" formControlName="tag" placeholder="tag {{i+1}}">
+                  </div>
+                </div>
+              </div>
+
+              <!--LAST TAG-->
+              <div *ngIf="i==tagCounter-1 && i!=0">
+                <div class="row">
+                  <div class="col-sm-5 col-md-5 col-lg-5">
+                    <a class="remove_field" (click)="remove_last_tag()" style="color:blue;">Elimina Tag</a>
+                  </div>
+                  <div class="col-sm-7 col-md-7 col-lg-7">
+                    <input class="form-control form-control-.lg" type="text" formControlName="tag" placeholder="tag {{tagCounter}}">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
       <br>
 
-      <button class="btn btn-primary pull-xs-right" type="submit">Enviar</button>
+      <!--BUTTON FOR FORM SUBMISSION-->
+      <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-primary pull-xs-right" type="submit">Agregar al catálogo</button>
+        </div>
+      </div>
     </form>
     <div class="col-md-3"></div>
   </div>
+
 </div>
+</div>
+</div>
+
+

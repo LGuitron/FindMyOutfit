@@ -1,0 +1,49 @@
+.contenedor_menu_logo {
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  .logo {
+    padding-bottom: 10px;
+    a {
+      display: block;
+      img {
+        vertical-align: top;
+        width: 350px;
+      }
+    }
+
+    .menu {
+      text-align: right;
+      line-height: 50px;
+      a {
+        color: #fff;
+        margin-left: 60px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+
+@media only screen and (min-width: 0px) and (max-width: 575px){ 
+  .contenedor_menu_logo {
+    .logo {
+      padding-bottom: 10px;
+      a {
+        display: block;
+        img {
+          vertical-align: top;
+          width: 280px;
+        }
+      }
+    }
+  }
+}

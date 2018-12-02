@@ -54,6 +54,7 @@
     "axios": "^0.18.0",
     "https": "^1.0.0",
     "loopback-connector-mongodb": "^3.9.2",
+    "md5-typescript": "^1.0.5",
     "mercadolibre": "0.0.13"
   },
   "devDependencies": {
