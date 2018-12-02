@@ -22,13 +22,9 @@ export class MyProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getUsersID("legl_1995@hotmail.com"); 
+    this.getUsersID("contacto@hola.com");//("legl_1995@hotmail.com"); 
     console.log("resultado pt 2");
     console.log(this.labels_tags);
-
-
-
-    
 
     //this.getLabels(); 
     //this.generatePieChart();
@@ -68,6 +64,7 @@ export class MyProfileComponent implements OnInit {
         this.getLabels();  
         }catch(error ){
           console.log("jiji");
+          document.getElementById("noTags").textContent="Aún no tienes búsquedas";
         }; 
       }, error => {
         document.getElementById("noTags").textContent="newtext";
@@ -79,12 +76,12 @@ export class MyProfileComponent implements OnInit {
 
 
   generatePieChart(history_labels, history_data){
-    this.PieChart = new Chart('lineChart',{
+    this.PieChart = new Chart('pieChart',{
       type: 'pie',
       data:{
         labels: history_labels ,//this.labels_tags,//["Jan","Feb","Mar","Abr","May","Junio","Julio", "Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
         datasets:[{
-          label: 'Number of items sold in months',
+          label: 'Lo que más buscas',
           data: history_data,//[9,7,3,5,2,10,15,16,19,3,1,9],
           fill: false,
           lineTension:0.2,

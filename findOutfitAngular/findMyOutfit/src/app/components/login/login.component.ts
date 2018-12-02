@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
                           };
 
 
-  	this.http.post("http://localhost:5000/users/login", request_body).subscribe(response => {
+  	this.http.post("http://localhost:5000/users/login", request_body).subscribe((response:any) => {
   			console.log(response);
   			if(response.status.statusCode == 200){
   				var user_email = response.user;
