@@ -13,12 +13,15 @@ import internalApis from '../../../assets/json/internalApis.json';
 export class AddProductComponent implements OnInit {
 
   // Counter for tags
+  user_email : string;
   tagCounter : number;
   max_fields : number;
   sugerenciaForm : FormGroup;
   tags : FormArray;
 
   submitted : boolean;
+  addSuccess : boolean;
+
 
   constructor(private formBuilder : FormBuilder, private http: HttpClient)
   {
@@ -26,6 +29,8 @@ export class AddProductComponent implements OnInit {
     this.tagCounter = 1;
     this.createForm();
     this.submitted = false;
+    this.addSuccess = false;
+    this.user_email = localStorage.getItem("user_email");
   }
 
   // Initialize JQuery for adding new tags
@@ -96,6 +101,7 @@ export class AddProductComponent implements OnInit {
   // TODO add id of the current user
   enviarFormulario()
   {
+    this.addSuccess = false;
     if(!this.sugerenciaForm.valid){
   		console.log("Invalid Form");
       this.submitted = true;
@@ -117,10 +123,10 @@ export class AddProductComponent implements OnInit {
     jsonSubmit.cost = +jsonSubmit.cost;
 
     // Add id of company uploading the product
-    jsonSubmit.user_id = "legl_1995@hotmail.com";
+    jsonSubmit.user_id = this.user_email;
 
     this.http.post(internalApis.suggestions, jsonSubmit).subscribe(response =>
-      {},
+      {this.addSuccess = true},
       err => {});
   }
 }

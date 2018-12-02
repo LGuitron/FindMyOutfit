@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import internalApis from '../../../assets/json/internalApis.json';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
+import {Md5} from "md5-typescript";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,12 +13,14 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  // Boolean for displaying text for login failure
+  loginFailed : boolean;
   loginForm : FormGroup = new FormGroup({
  	email: new FormControl(null, [Validators.email, Validators.required]),
  	password: new FormControl(null, Validators.required)
   });
 
-  constructor() { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,10 +28,41 @@ export class LoginComponent implements OnInit {
   login(){
   	if(!this.loginForm.valid){
   		console.log('Invalid');
+      this.loginFailed = true;
   		return;
   	}
-  	console.log(JSON.stringify(this.loginForm.value));
-  }
+
+  	var newJson = this.loginForm.value;
+
+
+  	let request_body = {
+
+
+								  "email": newJson.email,
+								  "password": newJson.password,
+
+
+
+                          };
+
+  	this.http.post("http://localhost:5000/users/login", request_body).subscribe((response:any) => {
+  			if(response.status.statusCode == 200){
+  				var user_email = response.user;
+  				console.log(user_email);
+  				localStorage.setItem("user_email", user_email);
+          this.router.navigate(['busca-outfit']);
+  			}
+        else{
+  				console.log("usuario no encontrado")
+  			}
+  		}, err => {
+      });
+
+
+
+ }
+
 
 
 }
+

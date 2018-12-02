@@ -136,7 +136,7 @@ export class UserController {
   })
   async login(@requestBody() credentials: LoginInfo): Promise<any> {
     
-     var errorResponse = {"error": {
+     var errorResponse = {"status": {
                                 "statusCode": "401",
                                 "name": "Error",
                                 "message": "Wrong email or password",
@@ -157,7 +157,7 @@ export class UserController {
         return errorResponse;
      
      
-    var successResponse = {"success": 
+    var successResponse = {"status": 
                                     {
                                     "statusCode": "200",
                                     "name": "Login Success",

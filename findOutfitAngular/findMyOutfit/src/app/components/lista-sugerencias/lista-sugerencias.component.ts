@@ -18,6 +18,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 export class ListaSugerenciasComponent implements OnInit {
 
   imageUrl : string;
+  user_email : string;                          // Email of the logged user
   tags : Array<any>;
   sugerencias = new Array<Sugerencia>();
 
@@ -26,7 +27,11 @@ export class ListaSugerenciasComponent implements OnInit {
   items_per_tag = [];
   display_tags  = new Array<boolean>();         // Boolean array to set the tags to be displayed
 
-  constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){ }
+
+
+  constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){
+    this.user_email = localStorage.getItem("user_email");
+  }
   ngOnInit()
   {
       this.imageUrl = this.transferService.getUrl();
@@ -76,7 +81,7 @@ export class ListaSugerenciasComponent implements OnInit {
   uploadTagsToUser()
   {
 
-      this.http.get(internalApis.users + "/legl_1995@hotmail.com").subscribe((usuario: any)=>{
+      this.http.get(internalApis.users + "/"+ this.user_email).subscribe((usuario: any)=>{
 
         var tagArray : Array<string> = new Array<string>();
 
@@ -93,7 +98,7 @@ export class ListaSugerenciasComponent implements OnInit {
           i += 1;
         }
         usuario.tag_history = tagArray;
-        this.http.patch(internalApis.users + "/legl_1995@hotmail.com", usuario).subscribe(response =>
+        this.http.patch(internalApis.users + "/" + this.user_email, usuario).subscribe(response =>
         {},
         err => {});
       });

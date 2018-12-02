@@ -12,12 +12,20 @@ import * as $ from 'jquery';
 })
 export class CatalogoComponent implements OnInit {
 
+  user_email : string;                          // Email of the logged user
   sugerencias = new Array<Sugerencia>();
 
   constructor(private http: HttpClient)
   {
+      this.user_email = localStorage.getItem("user_email");
       this.http.get(internalApis.suggestions).subscribe((catalogo: any)=>{
-          this.sugerencias = catalogo;
+          for (let sugerencia of catalogo)
+          {
+            if(sugerencia.user_id == this.user_email)
+            {
+              this.sugerencias.push(sugerencia);
+            }
+          }
       });
   }
 
