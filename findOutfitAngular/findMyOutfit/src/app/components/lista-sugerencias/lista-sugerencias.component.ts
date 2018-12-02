@@ -30,10 +30,10 @@ export class ListaSugerenciasComponent implements OnInit {
 
 
   constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){
-    this.user_email = localStorage.getItem("user_email");
   }
   ngOnInit()
   {
+      this.user_email = localStorage.getItem("user_email");
       this.imageUrl = this.transferService.getUrl();
 
       // If page was refreshed get url from local storage
@@ -68,7 +68,8 @@ export class ListaSugerenciasComponent implements OnInit {
 
             // When the tags have been returned use them to find clothes
             this.getItemsPerTag();
-            this.uploadTagsToUser();
+            if(this.user_email!=null)
+              this.uploadTagsToUser();
             this.getClothesWithTag();
             this.filterFromStore(catalogo);
           });
@@ -80,7 +81,6 @@ export class ListaSugerenciasComponent implements OnInit {
   // TODO do this for the current user
   uploadTagsToUser()
   {
-
       this.http.get(internalApis.users + "/"+ this.user_email).subscribe((usuario: any)=>{
 
         var tagArray : Array<string> = new Array<string>();

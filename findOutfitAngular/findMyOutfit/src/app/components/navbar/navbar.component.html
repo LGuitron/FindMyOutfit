@@ -1,40 +1,47 @@
 <div class="container">
 
 
-  <div class="row contenedor_menu_logo">
 
+
+  <!-- SHOW EMAIL OF CURRENTLY LOGGED USER-->
+  <div class="row">
+    <div class="logo col-xs-9 col-sm-9 col-md-9 text-center"></div>
+    <div class="logo col-xs-3 col-sm-3 col-md-3 text-center">
+      <div *ngIf="user_email!=null">
+        Usuario: {{user_email}}
+      </div>
+      <div *ngIf="user_email==null">
+        Sin sesión iniciada
+      </div>
+    </div>
+  </div>
     <!--LOGO APP-->
+  <div class="row contenedor_menu_logo">
     <div class="logo col-xs-12 col-sm-5 col-md-5">
       <div class="text-center">
         <a [routerLink]="['']"><img src="../../../assets/navbar/logoblack.png" alt="no disponible"></a>
       </div>
     </div>
 
-
-    <!--IMAGEN DE PERFIL (EN CASO DE LOGIN)-->
-    <div class="logo col-xs-12 col-sm-1 col-md-1">
+    <div class="logo col-xs-1 col-sm-1 col-md-1">
     </div>
-
-
 
     <!--FORM PARA AGREGAR NUEVOS PRODUCTOS AL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
-    <div class="col-xs-1 col-sm-1 col-md-1">
-      <a [routerLink]="['/add-product/']"><img class="img-fluid" src="../../../assets/navbar/add-property.png"></a>
-    </div>
+      <div class="col-xs-1 col-sm-1 col-md-1">
+        <a *ngIf="user_email!=null" [routerLink]="['/add-product/']"><img class="img-fluid" src="../../../assets/navbar/add-property.png"></a>
+      </div>
 
+      <!--FORM VER Y ELIMINAR PRODUCTOS DEL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
+      <div class="col-xs-1 col-sm-1 col-md-1">
+        <a *ngIf="user_email!=null" [routerLink]="['/catalog/']"><img class="img-fluid" src="../../../assets/navbar/shirt.png"></a>
+      </div>
 
-    <!--FORM VER Y ELIMINAR PRODUCTOS DEL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
-    <div class="col-xs-1 col-sm-1 col-md-1">
-      <a [routerLink]="['/catalog/']"><img class="img-fluid" src="../../../assets/navbar/shirt.png"></a>
-    </div>
-
-    <div class="col-xs-1 col-sm-1 col-md-1">
-      <a [routerLink]="['/busca-outfit/']"><img class="img-fluid" src="../../../assets/navbar/search.png"></a>
-    </div>
+      <div class="col-xs-1 col-sm-1 col-md-1">
+        <a [routerLink]="['/busca-outfit/']"><img class="img-fluid" src="../../../assets/navbar/search.png"></a>
+      </div>
 
     <!--HAMBURGER MENU (EN CASO DE LOGIN)-->
-    <!--div class="logo col-xs-3 col-sm-3 col-md-3" *ngIf="!auth.isAuthenticated()"-->
-    <div class="logo col-xs-3 col-sm-3 col-md-3">
+    <div *ngIf="user_email!=null" class="logo col-xs-3 col-sm-3 col-md-3">
       <mdb-navbar SideClass="navbar navbar-light white" [containerInside]="false" [iconBackground]="['white', 'darken-2']">
         <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/my-profile/']">Mi Perfil</a></mdb-navbar-brand>
 
@@ -54,23 +61,11 @@
       </mdb-navbar>
     </div>
 
-    <!--DROPDOWN MENU EN CASO DE LOGIN-->
-    <!--div class="logo col-xs-12 col-sm-4 col-md-4">
-      <div class="btn-group" mdbDropdown>
-          <button mdbDropdownToggle mdbBtn color="danger" class="dropdown-toggle waves-light" type="button" mdbWavesEffect>
-              Opciones
-          </button>
-          <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Editar Información</a>
-              <a class="dropdown-item" href="#">Cerrar Sesión</a>
-          </div>
-      </div>
-    </div-->
+    <div *ngIf="user_email==null" class="logo col-xs-3 col-sm-3 col-md-3 text-center">
+      <a [routerLink]="['/login/']">Iniciar Sesión</a>
+      <a [routerLink]="['/registro/']">Registrarse</a>
+    </div>
 
-
-    <!--BOTON INICIA (SI NO HAY LOGIN)-->
-    <!--div class="logo col-xs-12 col-sm-4 col-md-4"-->
-    <!--/div-->
   </div>
 </div>
 <hr>
