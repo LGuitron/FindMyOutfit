@@ -24,12 +24,36 @@ export class RegistroComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  public isError = false;
+  public isErrorPassword = false;
+
   ngOnInit() {
   }
 
   register(){
-  	if(!this.registerForm.valid || (this.registerForm.controls.password.value != this.registerForm.controls.cpass.value)){
+ 
+
+  	if(!this.registerForm.valid){
+  		console.log("Invalid passwords");
+
+  		this.isError = true;
+  		setTimeout(() => {
+  					this.isError= false;
+
+  				}, 4000)
+
+  		return;
+  	}
+
+  	if(this.registerForm.controls.password.value != this.registerForm.controls.cpass.value){
   		console.log("Invalid Form");
+
+  		this.isErrorPassword  = true;
+  		setTimeout(() => {
+  					this.isErrorPassword  = false;
+
+  				}, 4000)
+
   		return;
   	}
 
@@ -60,6 +84,11 @@ export class RegistroComponent implements OnInit {
           		localStorage.setItem("user_type", user_type);
  			this.router.navigate(['busca-outfit']);
   		}, err => {
+  		this.isError = true;
+  		setTimeout(() => {
+  					this.isError = false;
+
+  				}, 4000)
       });
 
   }
