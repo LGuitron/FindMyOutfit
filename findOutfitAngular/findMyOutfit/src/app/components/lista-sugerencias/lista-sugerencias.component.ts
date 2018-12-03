@@ -31,7 +31,7 @@ import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 })
 export class ListaSugerenciasComponent implements OnInit {
 
-  
+
   imageUrl : string;
   user_email : string;                          // Email of the logged user
   tags : Array<any>;
@@ -41,15 +41,15 @@ export class ListaSugerenciasComponent implements OnInit {
   probability_exponent    =  3;                 // Variable to favor tags with higher probabilities
   items_per_tag = [];
   display_tags  = new Array<boolean>();         // Boolean array to set the tags to be displayed
- 
-  //animations 
-  show = false; 
+
+  //animations
+  show = false;
   get stateName(){
     return this.show ? 'show' : 'hide'
   }
 
   toggle(){
-    this.show = !this.show; 
+    this.show = !this.show;
   }
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
+import internalApis from '../../../assets/json/internalApis.json';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-titulo',
@@ -8,8 +10,13 @@ import { AuthService } from "../../services/auth.service";
 })
 export class TituloComponent implements OnInit {
 
-  constructor(private auth:AuthService) { 
+  user_email : string;                          // Email of the logged user
+  user_name : string;
+
+
+  constructor(private http: HttpClient, private auth:AuthService) {
   	auth.handleAuthentication();
+    this.getUserName();
   }
 
   ngOnInit() {
@@ -19,5 +26,15 @@ export class TituloComponent implements OnInit {
   login(){
   	this.auth.login();
   }
+
+
+  getUserName()
+  {
+    this.user_email = localStorage.getItem("user_email");
+    this.http.get(internalApis.users + "/"+ this.user_email).subscribe((usuario: any)=>{
+        this.user_name = usuario.name;
+    });
+  }
+
 
 }
