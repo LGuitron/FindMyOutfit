@@ -27,16 +27,41 @@ export class RegistroEmpresaComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+
+  public isError = false;
+  public isErrorPassword = false;
+
+
   ngOnInit() {
   }
 
 
 
    registerCompany(){
-  	if(!this.registerCompanyForm.valid || (this.registerCompanyForm.controls.password.value != this.registerCompanyForm.controls.cpass.value)){
-  		console.log("Invalid Form");
+   	if(!this.registerCompanyForm.valid){
+  		console.log("Invalid passwords");
+
+  		this.isError = true;
+  		setTimeout(() => {
+  					this.isError= false;
+
+  				}, 4000)
+
   		return;
   	}
+
+  	if(this.registerCompanyForm.controls.password.value != this.registerCompanyForm.controls.cpass.value){
+  		console.log("Invalid Form");
+
+  		this.isErrorPassword  = true;
+  		setTimeout(() => {
+  					this.isErrorPassword  = false;
+
+  				}, 4000)
+
+  		return;
+  	}
+
 
   	var newJson = this.registerCompanyForm.value;
   	delete newJson['cpass'];
@@ -75,6 +100,11 @@ export class RegistroEmpresaComponent implements OnInit {
           		localStorage.setItem("user_type", user_type);
  			this.router.navigate(['busca-outfit']);
   		}, err => {
+  		this.isError = true;
+  		setTimeout(() => {
+  					this.isError = false;
+
+  				}, 4000)
       });
 
 

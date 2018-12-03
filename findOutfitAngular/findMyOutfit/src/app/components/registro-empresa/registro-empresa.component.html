@@ -17,6 +17,12 @@
             <div class="container">
                 <form [formGroup]="registerCompanyForm">
                     <h3 class="titulo"> Registro empresas </h3>
+                        <div class="alert alert-primary" role="alert" *ngIf="isErrorPassword">
+                      Las contraseñas no coinciden
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                      Ingresa todos los datos
+                    </div>
                 <div class="row">
                     <div class="col">
                       <input formControlName="email" type="email" class="form-control" placeholder="Correo">

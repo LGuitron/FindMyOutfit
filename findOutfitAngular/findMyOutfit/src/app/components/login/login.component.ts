@@ -22,13 +22,20 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+
+  public isError = false;
   ngOnInit() {
   }
 
   login(){
   	if(!this.loginForm.valid){
   		console.log('Invalid');
-      this.loginFailed = true;
+  		this.isError = true;
+  		setTimeout(() => {
+  					this.isError = false;
+
+  				}, 4000)
+      
   		return;
   	}
 
@@ -52,12 +59,32 @@ export class LoginComponent implements OnInit {
   				console.log(user_email);
   				localStorage.setItem("user_email", user_email);
           		localStorage.setItem("user_type", user_type);
+          		this.isError = false;
           		this.router.navigate(['busca-outfit']);
+
   			}
         else{
+        		
   				console.log("usuario no encontrado")
+  					this.isError = true;
+  				console.log("usuario no encontrado")
+  				setTimeout(() => {
+  					this.isError = false;
+
+  				}, 4000)
+  			
   			}
   		}, err => {
+
+
+  		this.isError = true;
+  				console.log("usuario no encontrado")
+  				setTimeout(() => {
+  					this.isError = false;
+
+  				}, 4000)
+
+
       });
 
 
