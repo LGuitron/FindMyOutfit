@@ -20,7 +20,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 //Servicios
 
 import { AuthService } from './services/auth.service';
-
+import { FacegoogleService } from './services/facegoogle.service';
 
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
@@ -31,6 +31,9 @@ import { RegistroEmpresaComponent } from './components/registro-empresa/registro
 
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -58,9 +61,11 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [AuthService],
+  providers: [AuthService, FacegoogleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

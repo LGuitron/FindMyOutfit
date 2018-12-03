@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { map, catchError, tap } from 'rxjs/operators';
 import {Md5} from "md5-typescript";
 import {Router} from "@angular/router";
+import {FacegoogleService} from '../../services/facegoogle.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
  	password: new FormControl(null, Validators.required)
   });
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public authService: FacegoogleService) { }
 
 
   public isError = false;
