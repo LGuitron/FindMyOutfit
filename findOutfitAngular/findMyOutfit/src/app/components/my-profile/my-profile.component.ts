@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import internalApis from '../../../assets/json/internalApis.json';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import {Chart} from 'Chart.js';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-my-profile',
@@ -9,22 +9,25 @@ import {Chart} from 'Chart.js';
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent implements OnInit {
-  labels_tags = []; // labels returned from database
-  PieChart = []; // variable for creation of piechart 
-  datos = []; // data from db 
 
-  constructor(private http: HttpClient) {   } //constructor for httpclient call
-  
-  labelsType = new Object(); // labels title 
-  labelsValues = []; //labels values for each title 
+  labels_tags = []; // labels returned from database
+
+  PieChart = []; // variable for creation of piechart
+  datos = []; // data from db 
+  constructor(private http: HttpClient) {
+
+  } //constructor for httpclient call
+
+  labelsType = new Object(); // labels title
+  labelsValues = []; //labels values for each title
 
 
   ngOnInit() {
-    this.getUsersID("legl_1995@hotmail.com"); 
+    this.getUsersID("legl_1995@hotmail.com");
     console.log("resultado pt 2");
     console.log(this.labels_tags);
 
-    //this.getLabels(); 
+    //this.getLabels();
     //this.generatePieChart();
   }
 
@@ -33,13 +36,13 @@ export class MyProfileComponent implements OnInit {
       console.log("resultado pt 2")
       console.log(this.labels_tags);
     //}, 2000);
-    
+
   }
 
   getUsers()
   {
     this.http.get(internalApis.users).subscribe(result => {
-                      this.labels_tags = result[''].map(result => result.tag_history); 
+                      this.labels_tags = result[''].map(result => result.tag_history);
                   }
                   ,
               () => {
@@ -53,24 +56,24 @@ export class MyProfileComponent implements OnInit {
        this.http.get(internalApis.users + "/" + id).subscribe((result: any) => {
         let resultados = result; 
         this.datos= result; 
+
         try{
-         this.labels_tags = result['tag_history'];//.map(res => res.tag_history); 
+         this.labels_tags = result['tag_history'];//.map(res => res.tag_history);
 
         console.log("resultado");
         console.log(resultados);
         console.log("tags");
         console.log(this.labels_tags);
-        this.getLabels();  
+        this.getLabels();
         }catch(error ){
           console.log("jiji");
           document.getElementById("noTags").textContent="Aún no tienes búsquedas";
-        }; 
+        };
       }, error => {
         document.getElementById("noTags").textContent="newtext";
         console.error("ERROR: Unexpected response");
-        
-       }); 
-      
+
+       });
   }
 
 
@@ -97,7 +100,7 @@ export class MyProfileComponent implements OnInit {
           ],
           borderWidth: 1
         }]
-      }, 
+      },
       options:{
         title:{
           text:"Tus 10 búsquedas más frecuentes",
@@ -117,19 +120,19 @@ export class MyProfileComponent implements OnInit {
   }
 
  getLabels(){
-    var tags = new Map();  // map with labels as keys and times they appear as value 
+    var tags = new Map();  // map with labels as keys and times they appear as value
     var i;
     console.log("labels tags");
     console.log(this.labels_tags);
     console.log("labels tags length");
     console.log(this.labels_tags.length);
-    for (i = 0; i < this.labels_tags.length; i++) { 
+    for (i = 0; i < this.labels_tags.length; i++) {
       console.log("this.labels_tags[i]");
       console.log(this.labels_tags[i]);
       var count = 1
       if(tags.has(this.labels_tags[i])){
         count = tags.get(this.labels_tags[i]);
-        count = count + 1; 
+        count = count + 1;
       }
       tags.set(this.labels_tags[i],count);
     }
@@ -155,15 +158,13 @@ export class MyProfileComponent implements OnInit {
       values.push(value);
     }*/
 
-    
-
     this.labelsType = title;
-    console.log("labelsType"); 
+    console.log("labelsType");
     console.log(this.labelsType);
     this.labelsValues = values;
-    console.log("labelsvalues"); 
+    console.log("labelsvalues");
     console.log(this.labelsValues);
-    this.generatePieChart(this.labelsType, this.labelsValues); 
+    this.generatePieChart(this.labelsType, this.labelsValues);
  }
  
 }

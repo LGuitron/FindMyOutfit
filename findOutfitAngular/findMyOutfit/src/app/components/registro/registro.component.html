@@ -17,6 +17,18 @@
             <div class="container">
                 <form [formGroup]="registerForm">
                     <h3 class="titulo"> Registro </h3>
+
+
+
+                    <div class="alert alert-primary" role="alert" *ngIf="isErrorPassword">
+                      Las contraseñas no coinciden
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                      Ingresa todos los datos
+                    </div>
+
+
+
                 <div class="row">
                     <div class="col">
                       <input formControlName="email" type="email" name="email" class="form-control" placeholder="Correo">
@@ -27,7 +39,7 @@
                       <input formControlName="name" type="text" class="form-control" name="name" placeholder="Nombre">
                     </div>
                     <div class="col">
-                      <input formControlName="lastname"  type="text" class="form-control" name="lastname" placeholder="Apellidos">
+                      <input formControlName="last_names"  type="text" class="form-control" name="lastname" placeholder="Apellidos">
                     </div>
                   </div>
                 <div class="row">

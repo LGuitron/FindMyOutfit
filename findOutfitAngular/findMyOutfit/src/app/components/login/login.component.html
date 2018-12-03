@@ -12,11 +12,22 @@
 
 
             <div class="container">
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+                  <div class="card_login">
+                    <div class="card">
+                      <div class="card-body text-center">
                 <h3 class="text-center">Inicia sesión</h3>
+
+                <!-- INDICATE LOGIN FAILURE-->
+                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                  Usuario no encontrado
+                </div>
+
                 <div class="row justify-content-center align-items-center">
                     <div class="col-sm text-center"><div class="fb-login-button centered" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div></div>
                 </div>
-                
+
                 <form [formGroup]="loginForm">
 
                   <div class="form-group row justify-content-md-center">
@@ -30,22 +41,31 @@
                     </div>
                   </div>
 
+                  
+               
+
                 <div class="form-row text-center">
                     <div class="col-sm">
                         <button (click)="login()" type="submit" class="btn btn-dark">Entrar</button>
                     </div>
+
+
                 </div>
 
                 </form>
     <div class="row text-center justify-content-md-center">
                     <div class="col-sm">
-                    <small>¿Aún no tienes cuenta?</small> 
+                    <small>¿Aún no tienes cuenta?</small>
                     </div>
                 </div>
                 <div class="row  text-center justify-content-md-center">
                   <div class="col-sm">
-                     <small><a [routerLink]="['/registro/']">Registro</a></small>  
+                     <small><a [routerLink]="['/registro/']">Registro</a></small>
                      </div>
                 </div>
+              </div>
             </div>
-        
+          </div>
+        </div>
+      </div>
+            </div>

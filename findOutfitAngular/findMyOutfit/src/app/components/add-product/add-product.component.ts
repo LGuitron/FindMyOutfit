@@ -4,31 +4,43 @@ import {FormGroup, FormControl, FormBuilder, FormArray , Validators} from '@angu
 import {Sugerencia} from '../../models/sugerencia'
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import internalApis from '../../../assets/json/internalApis.json';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
+
 export class AddProductComponent implements OnInit {
 
   // Counter for tags
+  user_email : string;
+  user_type : string;
   tagCounter : number;
   max_fields : number;
   sugerenciaForm : FormGroup;
   tags : FormArray;
 
   submitted : boolean;
+  addSuccess : boolean;
 
-  constructor(private formBuilder : FormBuilder, private http: HttpClient)
+
+  constructor(private formBuilder : FormBuilder, private http: HttpClient, private router: Router)
   {
     this.max_fields = 10;
     this.tagCounter = 1;
     this.createForm();
     this.submitted = false;
+    this.addSuccess = false;
+    this.user_email = localStorage.getItem("user_email");
+    this.user_type = localStorage.getItem("user_type");
+
+    // Block access to non company users
+    if(this.user_email == null || this.user_type != "company")
+      this.router.navigate(['']);
   }
 
-  // Initialize JQuery for adding new tags
   ngOnInit() {}
 
   // TODO add validators for each field
@@ -53,8 +65,6 @@ export class AddProductComponent implements OnInit {
                                      this.createArrayItem(false)
                                     ])
     });
-    console.log("FORM");
-    console.log(this.sugerenciaForm);
   }
 
   // Create new items in array of tags
@@ -96,6 +106,7 @@ export class AddProductComponent implements OnInit {
   // TODO add id of the current user
   enviarFormulario()
   {
+    this.addSuccess = false;
     if(!this.sugerenciaForm.valid){
   		console.log("Invalid Form");
       this.submitted = true;
@@ -117,10 +128,10 @@ export class AddProductComponent implements OnInit {
     jsonSubmit.cost = +jsonSubmit.cost;
 
     // Add id of company uploading the product
-    jsonSubmit.user_id = "legl_1995@hotmail.com";
+    jsonSubmit.user_id = this.user_email;
 
     this.http.post(internalApis.suggestions, jsonSubmit).subscribe(response =>
-      {},
+      {this.addSuccess = true},
       err => {});
   }
 }

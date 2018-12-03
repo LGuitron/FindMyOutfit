@@ -1,5 +1,6 @@
 import {inject} from '@loopback/context';
 import {post, requestBody} from "@loopback/openapi-v3";
+import {ClarifaiInput} from '../models';
 
 const axios = require('axios');
 
@@ -15,9 +16,27 @@ export class ClarifaiController {
 
   constructor() {}
 
-  @post('/api/clarifai') 
-  async getTags(@requestBody() data: any): Promise<any> {
-    var items = await axios.post(this.endpoint, data, {headers:this.headers});
+  @post('/api/clarifai',{
+     responses: {
+                    '200': {
+                description: 'Obtained image information successfully',
+            }
+        }
+    }) 
+  async getTags(@requestBody() data: ClarifaiInput): Promise<any> {
+    
+    let request_body = {
+                        "inputs": [
+                            {
+                            "data": {
+                                "image": {
+                                "url": data.url
+                                }
+                            }
+                            }
+                        ]
+                        };
+    var items = await axios.post(this.endpoint, request_body, {headers:this.headers});
     return items.data;
   }
 }

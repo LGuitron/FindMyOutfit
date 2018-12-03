@@ -4,6 +4,7 @@ import internalApis from '../../../assets/json/internalApis.json';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import {Md5} from "md5-typescript";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registro-empresa',
@@ -24,7 +25,12 @@ export class RegistroEmpresaComponent implements OnInit {
  	type: new FormControl('company')
   })
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+
+
+  public isError = false;
+  public isErrorPassword = false;
+
 
   ngOnInit() {
   }
@@ -32,10 +38,30 @@ export class RegistroEmpresaComponent implements OnInit {
 
 
    registerCompany(){
-  	if(!this.registerCompanyForm.valid || (this.registerCompanyForm.controls.password.value != this.registerCompanyForm.controls.cpass.value)){
-  		console.log("Invalid Form");
+   	if(!this.registerCompanyForm.valid){
+  		console.log("Invalid passwords");
+
+  		this.isError = true;
+  		setTimeout(() => {
+  					this.isError= false;
+
+  				}, 4000)
+
   		return;
   	}
+
+  	if(this.registerCompanyForm.controls.password.value != this.registerCompanyForm.controls.cpass.value){
+  		console.log("Invalid Form");
+
+  		this.isErrorPassword  = true;
+  		setTimeout(() => {
+  					this.isErrorPassword  = false;
+
+  				}, 4000)
+
+  		return;
+  	}
+
 
   	var newJson = this.registerCompanyForm.value;
   	delete newJson['cpass'];
@@ -65,9 +91,20 @@ export class RegistroEmpresaComponent implements OnInit {
 
 
 
-  	this.http.post(internalApis.users, request_body).subscribe(response => {
-
+  	this.http.post(internalApis.users, request_body).subscribe((response:any) => {
+  			var user_email = response.email;
+          		var user_type  = response.type;
+  				console.log(user_email);
+  				console.log(user_type);
+  				localStorage.setItem("user_email", user_email);
+          		localStorage.setItem("user_type", user_type);
+ 			this.router.navigate(['busca-outfit']);
   		}, err => {
+  		this.isError = true;
+  		setTimeout(() => {
+  					this.isError = false;
+
+  				}, 4000)
       });
 
 

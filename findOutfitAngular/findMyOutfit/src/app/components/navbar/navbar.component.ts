@@ -8,8 +8,12 @@ import { AuthService } from "../../services/auth.service";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private auth:AuthService) {
+  user_email : string;                          // Email of the logged user
+  user_type : string;
 
+  constructor(private auth:AuthService) {
+    this.user_email = localStorage.getItem("user_email");
+    this.user_type = localStorage.getItem("user_type");
   }
 
   ngOnInit() {
@@ -17,6 +21,7 @@ export class NavbarComponent implements OnInit {
   }
 
   salir(){
+    localStorage.clear();
   	this.auth.logout();
   }
 
