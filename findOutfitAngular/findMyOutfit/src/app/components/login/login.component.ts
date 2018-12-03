@@ -6,7 +6,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import {Md5} from "md5-typescript";
 import {Router} from "@angular/router";
 //import {FacegoogleService} from '../../services/facegoogle.service';
-import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, AuthService } from "angular-6-social-login";
+import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider , AuthService } from "angular-6-social-login";
 
 @Component({
   selector: 'app-login',
@@ -101,6 +101,9 @@ export class LoginComponent implements OnInit {
     }
     else if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    else if (socialPlatform == "linkedin") {
+      socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
