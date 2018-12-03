@@ -11,18 +11,16 @@ import {Chart} from 'Chart.js';
 export class MyProfileComponent implements OnInit {
   labels_tags = []; // labels returned from database
   PieChart = []; // variable for creation of piechart 
+  datos = []; // data from db 
 
-  constructor(private http: HttpClient) { 
-    console.log("constructor");
-    
-  } //constructor for httpclient call
+  constructor(private http: HttpClient) {   } //constructor for httpclient call
   
   labelsType = new Object(); // labels title 
   labelsValues = []; //labels values for each title 
 
 
   ngOnInit() {
-    this.getUsersID("contacto@hola.com");//("legl_1995@hotmail.com"); 
+    this.getUsersID("legl_1995@hotmail.com"); 
     console.log("resultado pt 2");
     console.log(this.labels_tags);
 
@@ -52,8 +50,9 @@ export class MyProfileComponent implements OnInit {
 
   getUsersID(id : string)
   {
-       this.http.get(internalApis.users + "/" + id).subscribe(result => {
+       this.http.get(internalApis.users + "/" + id).subscribe((result: any) => {
         let resultados = result; 
+        this.datos= result; 
         try{
          this.labels_tags = result['tag_history'];//.map(res => res.tag_history); 
 
@@ -79,28 +78,38 @@ export class MyProfileComponent implements OnInit {
     this.PieChart = new Chart('pieChart',{
       type: 'pie',
       data:{
-        labels: history_labels ,//this.labels_tags,//["Jan","Feb","Mar","Abr","May","Junio","Julio", "Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+        labels: history_labels,
         datasets:[{
-          label: 'Lo que más buscas',
-          data: history_data,//[9,7,3,5,2,10,15,16,19,3,1,9],
-          fill: false,
-          lineTension:0.2,
-          borderColor:"red",
+          label: "Lo que más buscas",
+          data: history_data,
+          lineTension: 1,
+          backgroundColor: [
+            'rgba(255, 99, 132,0.9)',
+            'rgba(54, 162, 235, 0.9)',
+            'rgba(255, 206, 86, 0.9)',
+            'rgba(75, 192, 192, 0.9)',
+            'rgba(153, 102, 255, 0.9)',
+            'rgba(255, 159, 64, 0.9)',
+            'rgba(135, 206, 235,0.9)',
+            'rgba(255, 69, 0,0.7)',
+            'rgba(148, 0, 211,0.7)', 
+            'rgba(72, 61, 139,0.7)'
+          ],
           borderWidth: 1
         }]
       }, 
       options:{
         title:{
-          text:"Pie Chart",
+          text:"Tus 10 búsquedas más frecuentes",
           display: true
         },
-        scales:{
-          yAxes:[{
-            ticks:{
-              beginAtZero:true
-            }
-          }]
-        }
+        cutoutPercentage: 40, 
+        legend: {position:'bottom', 
+              labels:{pointStyle:'circle',
+              usePointStyle:true}
+          },
+        
+    maintainAspectRatio: false
       }
     });
 
@@ -126,16 +135,25 @@ export class MyProfileComponent implements OnInit {
     }
     console.log("tags");
     console.log(tags);
+    //mapa a array 
+    let keys = Array.from(tags);
+    keys.sort(function(a,b){
+      return b[1]- a[1];
+    });
+    let tenkeys  = keys.slice(0,10);
 
     var title = []; 
-    for (let key of Array.from(tags.keys())) {
-      title.push(key);
+    var values = []; 
+    for (let key of tenkeys) {
+      title.push(key[0]);
+      values.push(key[1]);
+
     }
 
-    var values = []; 
+    /*
     for (let value of Array.from(tags.values())) {
       values.push(value);
-    }
+    }*/
 
     
 
@@ -147,6 +165,5 @@ export class MyProfileComponent implements OnInit {
     console.log(this.labelsValues);
     this.generatePieChart(this.labelsType, this.labelsValues); 
  }
-
-
+ 
 }

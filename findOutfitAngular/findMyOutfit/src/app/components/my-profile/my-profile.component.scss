@@ -1,0 +1,28 @@
+div{
+    .data 
+    {
+        p{
+            display:inline;
+            padding-top: 10px;
+            padding-bottom: 10px; 
+        }
+        h5{
+            display:inline; 
+            padding-top: 10px;
+            padding-bottom: 10px; 
+        }
+
+    }
+    img{
+        width: 60%; 
+    }
+}
+.datosP{
+    background: rgba(251, 118, 120,0.2)	; 
+    border-radius: 2%;
+}
+canvas{
+    height: 90% !important;
+    width: auto; 
+    max-height: 300px !important; 
+}
