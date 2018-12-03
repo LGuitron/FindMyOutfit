@@ -20,6 +20,8 @@ export class MyProfileComponent implements OnInit {
   datos = []; // data from db
   user_email : string;
   user_type : string; 
+  texto = "Tus 10 búsquedas más frecuentes"; 
+  tituloo = ""
 
   constructor(private http: HttpClient, private router: Router) {
 
@@ -69,6 +71,8 @@ export class MyProfileComponent implements OnInit {
         if(result['type'] == 'company'){
           document.getElementById("Company").textContent="Tipo de usuario: ";
           document.getElementById("Companydatos").textContent="Empresa";
+          document.getElementById("titulooo").textContent="Información de tus productos";
+          this.texto = "Tus tags más comunes "
 
           this.http.get(internalApis.suggestions).subscribe((catalogo: any)=>{
             for (let sugerencia of catalogo)
@@ -103,7 +107,9 @@ export class MyProfileComponent implements OnInit {
         console.log(resultados);
         console.log("tags");
         console.log(this.labels_tags);
-        this.getLabels();
+        if(result['type'] != 'company'){
+          this.getLabels();
+        }
         }catch(error ){
           console.log("jiji");
           document.getElementById("noTags").textContent="Aún no tienes búsquedas. ";
@@ -142,7 +148,7 @@ export class MyProfileComponent implements OnInit {
       },
       options:{
         title:{
-          text:"Tus 10 búsquedas más frecuentes",
+          text:this.texto,
           display: true
         },
         cutoutPercentage: 40,
@@ -229,31 +235,37 @@ export class MyProfileComponent implements OnInit {
 
  getLabels2(){
   if(this.user_type == 'company'){
-    console.log("hola dos");
+    if(this.sugerencias.length  == 0 ){
+      document.getElementById("noTags").textContent="Aún no tienes  productos. ";
+    }else{
+      console.log("hola dos");
             console.log(this.mapaSugerencias);
-    let keys1 = Array.from(this.mapaSugerencias);
-    keys1.sort(function(a,b){
-      return b[1]- a[1];
-    });
-    let tenkeys  = keys1.slice(0,10);
+        let keys1 = Array.from(this.mapaSugerencias);
+        keys1.sort(function(a,b){
+          return b[1]- a[1];
+        });
+        let tenkeys  = keys1.slice(0,10);
 
 
-    var title = [];
-    var values = [];
-    for (let key of tenkeys) {
-      title.push(key[0]);
-      values.push(key[1]);
+        var title = [];
+        var values = [];
+        for (let key of tenkeys) {
+          title.push(key[0]);
+          values.push(key[1]);
+
+        }
+
+
+        this.labelsType = title;
+        console.log("labelsType company");
+        console.log(this.labelsType);
+        this.labelsValues = values;
+        console.log("labelsvalues company");
+        console.log(this.labelsValues);
+        this.generatePieChart(this.labelsType, this.labelsValues);
 
     }
-
-
-    this.labelsType = title;
-    console.log("labelsType company");
-    console.log(this.labelsType);
-    this.labelsValues = values;
-    console.log("labelsvalues company");
-    console.log(this.labelsValues);
-    this.generatePieChart(this.labelsType, this.labelsValues);
+    
 
   }else{
 
