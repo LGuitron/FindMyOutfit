@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NavbarComponent} from '../navbar/navbar.component';
-import {Sugerencia} from '../../models/sugerencia'
+import {Sugerencia} from '../../models/sugerencia';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import internalApis from '../../../assets/json/internalApis.json';
 import {Router} from "@angular/router";

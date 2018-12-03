@@ -3,6 +3,7 @@ import internalApis from '../../../assets/json/internalApis.json';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {Chart} from 'chart.js';
 import {Router} from "@angular/router";
+import {Sugerencia} from '../../models/sugerencia';
 
 @Component({
   selector: 'app-my-profile',
@@ -12,13 +13,27 @@ import {Router} from "@angular/router";
 export class MyProfileComponent implements OnInit {
 
   labels_tags = []; // labels returned from database
+  sugerencias = new Array<Sugerencia>();
+  mapaSugerencias = new Map(); 
 
   PieChart = []; // variable for creation of piechart
   datos = []; // data from db
+  user_email : string;
+  user_type : string; 
+
   constructor(private http: HttpClient, private router: Router) {
 
       if(localStorage.getItem("user_email") == null)
         this.router.navigate(['']);
+
+
+      this.user_email = localStorage.getItem("user_email");
+      this.user_type = localStorage.getItem("user_type");
+  
+        // Block access to non company users
+        
+  
+        
 
   } //constructor for httpclient call
 
@@ -44,23 +59,42 @@ export class MyProfileComponent implements OnInit {
 
   }
 
-  getUsers()
-  {
-    this.http.get(internalApis.users).subscribe(result => {
-                      this.labels_tags = result[''].map(result => result.tag_history);
-                  }
-                  ,
-              () => {
-                console.log("Request complete")
-              }
-                  );
-  }
+
 
   getUsersID(id : string)
   {
        this.http.get(internalApis.users + "/" + id).subscribe((result: any) => {
         let resultados = result;
         this.datos= result;
+        if(result['type'] == 'company'){
+          document.getElementById("Company").textContent="Tipo de usuario: ";
+          document.getElementById("Companydatos").textContent="Empresa";
+
+          this.http.get(internalApis.suggestions).subscribe((catalogo: any)=>{
+            for (let sugerencia of catalogo)
+            {
+              if(sugerencia.user_id == this.user_email)
+              {
+                this.sugerencias.push(sugerencia);
+                var count = 1; 
+                for (let tag of sugerencia.tags){
+                  if(this.mapaSugerencias.has(tag)){
+                    count = this.mapaSugerencias.get(tag);
+                    count = count + 1;
+                  }
+                  this.mapaSugerencias.set(tag,count);
+
+                }
+                
+              }
+            }
+            console.log("hola");
+            console.log(this.mapaSugerencias);
+            this.getLabels2();
+          });
+
+
+        }
 
         try{
          this.labels_tags = result['tag_history'];//.map(res => res.tag_history);
@@ -125,15 +159,38 @@ export class MyProfileComponent implements OnInit {
   }
 
  getLabels(){
+  if(this.user_type == 'company'){
+    console.log("hola dos");
+            console.log(this.mapaSugerencias);
+    let keys1 = Array.from(this.mapaSugerencias);
+    keys1.sort(function(a,b){
+      return b[1]- a[1];
+    });
+    let tenkeys  = keys1.slice(0,10);
+
+
+    var title = [];
+    var values = [];
+    for (let key of tenkeys) {
+      title.push(key[0]);
+      values.push(key[1]);
+
+    }
+
+
+    this.labelsType = title;
+    console.log("labelsType company");
+    console.log(this.labelsType);
+    this.labelsValues = values;
+    console.log("labelsvalues company");
+    console.log(this.labelsValues);
+    this.generatePieChart(this.labelsType, this.labelsValues);
+
+  }else{
+
     var tags = new Map();  // map with labels as keys and times they appear as value
     var i;
-    console.log("labels tags");
-    console.log(this.labels_tags);
-    console.log("labels tags length");
-    console.log(this.labels_tags.length);
     for (i = 0; i < this.labels_tags.length; i++) {
-      console.log("this.labels_tags[i]");
-      console.log(this.labels_tags[i]);
       var count = 1
       if(tags.has(this.labels_tags[i])){
         count = tags.get(this.labels_tags[i]);
@@ -141,8 +198,6 @@ export class MyProfileComponent implements OnInit {
       }
       tags.set(this.labels_tags[i],count);
     }
-    console.log("tags");
-    console.log(tags);
     //mapa a array
     let keys = Array.from(tags);
     keys.sort(function(a,b){
@@ -166,6 +221,79 @@ export class MyProfileComponent implements OnInit {
     console.log("labelsvalues");
     console.log(this.labelsValues);
     this.generatePieChart(this.labelsType, this.labelsValues);
+
+  }
+
+    
+ }
+
+ getLabels2(){
+  if(this.user_type == 'company'){
+    console.log("hola dos");
+            console.log(this.mapaSugerencias);
+    let keys1 = Array.from(this.mapaSugerencias);
+    keys1.sort(function(a,b){
+      return b[1]- a[1];
+    });
+    let tenkeys  = keys1.slice(0,10);
+
+
+    var title = [];
+    var values = [];
+    for (let key of tenkeys) {
+      title.push(key[0]);
+      values.push(key[1]);
+
+    }
+
+
+    this.labelsType = title;
+    console.log("labelsType company");
+    console.log(this.labelsType);
+    this.labelsValues = values;
+    console.log("labelsvalues company");
+    console.log(this.labelsValues);
+    this.generatePieChart(this.labelsType, this.labelsValues);
+
+  }else{
+
+    var tags = new Map();  // map with labels as keys and times they appear as value
+    var i;
+    for (i = 0; i < this.labels_tags.length; i++) {
+      var count = 1
+      if(tags.has(this.labels_tags[i])){
+        count = tags.get(this.labels_tags[i]);
+        count = count + 1;
+      }
+      tags.set(this.labels_tags[i],count);
+    }
+    //mapa a array
+    let keys = Array.from(tags);
+    keys.sort(function(a,b){
+      return b[1]- a[1];
+    });
+    let tenkeys  = keys.slice(0,10);
+
+    var title = [];
+    var values = [];
+    for (let key of tenkeys) {
+      title.push(key[0]);
+      values.push(key[1]);
+
+    }
+
+
+    this.labelsType = title;
+    console.log("labelsType");
+    console.log(this.labelsType);
+    this.labelsValues = values;
+    console.log("labelsvalues");
+    console.log(this.labelsValues);
+    this.generatePieChart(this.labelsType, this.labelsValues);
+
+  }
+
+    
  }
 
 }
