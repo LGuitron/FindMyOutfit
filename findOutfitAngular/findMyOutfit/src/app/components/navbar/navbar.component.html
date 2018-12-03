@@ -24,7 +24,7 @@
     <div class="logo col-xs-1 col-sm-1 col-md-1"></div>
 
     <!--FORM PARA AGREGAR NUEVOS PRODUCTOS AL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
-    
+
       <div class="col-xs-1 col-sm-1 col-md-1 center-icono">
         <a *ngIf="user_email!=null && user_type=='company'" [routerLink]="['/add-product/']"><img class="img-fluid icono" src="../../../assets/navbar/add-property.png"></a>
       </div>
@@ -59,8 +59,8 @@
     </div>
 
     <div *ngIf="user_email==null" class="logo col-xs-3 col-sm-3 col-md-3 text-center">
-      <a [routerLink]="['/login/']">Iniciar Sesión</a>
-      <a [routerLink]="['/registro/']">Registrarse</a>
+      <a [routerLink]="['/login/']" style="color:black;">Iniciar Sesión</a>
+      <a [routerLink]="['/registro/']" style="color:black;">Registrarse</a>
     </div>
 
   </div>
