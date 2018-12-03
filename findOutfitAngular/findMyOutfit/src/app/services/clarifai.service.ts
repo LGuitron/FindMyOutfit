@@ -15,18 +15,7 @@ export class ClarifaiService {
   constructor(private http: HttpClient) {}
   getTags(image_url) : Observable<any>
   {
-      let request_body = {
-                            "inputs": [
-                              {
-                                "data": {
-                                  "image": {
-                                    "url": image_url
-                                  }
-                                }
-                              }
-                            ]
-                          };
-
+      let request_body = {"url": image_url};
       return this.http.post(this.endpoint, request_body).pipe(
         map(function(res){
           return res;

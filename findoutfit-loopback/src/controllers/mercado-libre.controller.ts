@@ -7,7 +7,13 @@ export class MercadoLibreController {
     
   constructor() {}
   
-  @get('/api/mercadolibre/item/{tag}/{maxAmount}') 
+  @get('/api/mercadolibre/item/{tag}/{maxAmount}',{
+      responses: {
+                    '200': {
+                description: 'Products successfully retrieved from MercadoLibre',
+            }
+        }     
+    }) 
   async getItems(
     @param.path.string('tag') tag: string,
     @param.path.string('maxAmount') maxAmount: string,
@@ -16,7 +22,13 @@ export class MercadoLibreController {
     return items.data;
   }
   
-  @get('/api/mercadolibre/image/{id}') 
+  @get('/api/mercadolibre/image/{id}',{
+       responses: {
+                    '200': {
+                description: 'Product image successfully retrieved from MercadoLibre',
+            }
+        }     
+    })  
   async getImage(
     @param.path.string('id') id: string,
   ): Promise<any> {
