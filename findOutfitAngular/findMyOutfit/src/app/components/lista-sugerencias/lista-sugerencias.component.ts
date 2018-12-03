@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { map, catchError, tap } from 'rxjs/operators';
 import {trigger, state,style,animate,transition} from '@angular/animations';
 import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-lista-sugerencias',
@@ -53,10 +54,12 @@ export class ListaSugerenciasComponent implements OnInit {
   }
 
 
-  constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){
+  constructor(private spinnerService: NgxSpinnerService, private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){
   }
   ngOnInit()
   {
+      this.spinner();
+
       this.user_email = localStorage.getItem("user_email");
       this.imageUrl = this.transferService.getUrl();
 
@@ -224,4 +227,12 @@ export class ListaSugerenciasComponent implements OnInit {
   {
     return Math.round((price * 100) / 100).toFixed(2);
   }
+
+    spinner(): void{
+      this.spinnerService.show();
+      setTimeout(()=>{
+        this.spinnerService.hide();
+      },2000);
+    }
+    
 }

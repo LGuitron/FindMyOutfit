@@ -38,6 +38,10 @@ import { environment } from '../environments/environment';
 import { getAuthServiceConfigs } from "./socialloginConfig";
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider } from "angular-6-social-login";
 
+//externals
+
+import { NgxSpinnerModule  } from 'ngx-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +71,7 @@ import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLogi
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     SocialLoginModule,
+    NgxSpinnerModule,
   ],
   providers: [AuthService, FacegoogleService,
               {
