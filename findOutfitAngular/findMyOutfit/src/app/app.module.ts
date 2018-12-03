@@ -35,6 +35,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
+import { getAuthServiceConfigs } from "./socialloginConfig";
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "angular-6-social-login";
 
 @NgModule({
   declarations: [
@@ -49,8 +51,7 @@ import { environment } from '../environments/environment';
     LoginComponent,
     RegistroComponent,
     RegistroEmpresaComponent,
-    MyProfileComponent,
-
+    MyProfileComponent
 
 
   ],
@@ -63,9 +64,15 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    SocialLoginModule,
   ],
-  providers: [AuthService, FacegoogleService],
+  providers: [AuthService, FacegoogleService,
+              {
+                provide: AuthServiceConfig,
+                useFactory: getAuthServiceConfigs
+              }
+             ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
