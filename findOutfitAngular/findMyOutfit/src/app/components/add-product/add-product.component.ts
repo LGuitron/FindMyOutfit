@@ -65,8 +65,6 @@ export class AddProductComponent implements OnInit {
                                      this.createArrayItem(false)
                                     ])
     });
-    console.log("FORM");
-    console.log(this.sugerenciaForm);
   }
 
   // Create new items in array of tags

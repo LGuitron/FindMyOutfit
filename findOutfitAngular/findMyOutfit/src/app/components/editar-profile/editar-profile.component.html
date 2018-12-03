@@ -1,25 +1,40 @@
-
 <app-navbar></app-navbar>
 <div class="container">
   <div class="profile">
     <div class="content">
       <h1>Editar perfil</h1>
-      <form [formGroup]="profileForm" (ngSubmit)="enviarFormulario()">
+      <form *ngIf="profileForm != undefined" [formGroup]="profileForm" (ngSubmit)="enviarFormulario()">
         <fieldset>
           <div class="grid-35">
             <label for="email">Correo</label>
           </div>
           <div class="grid-65">
-            <!--input type="email" id="email" value={{user_email}} tabindex="6" /-->
             <label for="email">{{user_email}}</label>
           </div>
         </fieldset>
+
+        <fieldset>
+          <div class="grid-35">
+            <label for="usertype">Tipo de usuario</label>
+          </div>
+          <div class="grid-65">
+            <label for="usertype">
+              <div *ngIf="user_type=='user'">
+                Regular
+              </div>
+              <div *ngIf="user_type=='company'">
+                Compañía
+              </div>
+            </label>
+          </div>
+        </fieldset>
+
         <fieldset>
           <div class="grid-35">
             <label for="fname">Nombre</label>
           </div>
           <div class="grid-65">
-            <input type="text" id="fname" value={{user_name}} tabindex="1" />
+            <input type="text" formControlName="name" value={{user_name}} tabindex="1" />
           </div>
         </fieldset>
         <fieldset>
@@ -27,17 +42,34 @@
             <label for="lname">Apellidos</label>
           </div>
           <div class="grid-65">
-            <input type="text" id="lname" value={{user_lastnames}} tabindex="2" />
+            <input type="text" formControlName="last_names" value={{user_lastnames}} tabindex="2" />
           </div>
         </fieldset>
+
+        <!-- DISPLAY UPDATE STATUS-->
+        <div *ngIf="submitted && successUpdate">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 text-center" style="color:green;">
+                Perfil actualizado con éxito
+            </div>
+          </div>
+        </div>
+        <div *ngIf="submitted && !successUpdate">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 text-center" style="color:red;">
+                Error al actualizar perfil (ambos campos son requeridos)
+            </div>
+          </div>
+        </div>
+
         <fieldset>
           <input type="button" [routerLink]="['/busca-outfit/']" class="Btn cancel" value="Cancel" />
-          <input type="button" [routerLink]="['/busca-outfit/']" class="Btn" value="Save Changes" />
+          <input type="submit" class="Btn" value="Save Changes" />
         </fieldset>
-
       </form>
     </div>
   </div>
 </div>
-
+{{submitted}}
+{{successUpdate}}
 
