@@ -20,7 +20,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 //Servicios
 
 import { AuthService } from './services/auth.service';
-
+import { FacegoogleService } from './services/facegoogle.service';
 
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
@@ -31,7 +31,12 @@ import { RegistroEmpresaComponent } from './components/registro-empresa/registro
 
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
+import { getAuthServiceConfigs } from "./socialloginConfig";
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider } from "angular-6-social-login";
 
 @NgModule({
   declarations: [
@@ -46,8 +51,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     LoginComponent,
     RegistroComponent,
     RegistroEmpresaComponent,
-    MyProfileComponent,
-
+    MyProfileComponent
 
 
   ],
@@ -59,9 +63,17 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    SocialLoginModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, FacegoogleService,
+              {
+                provide: AuthServiceConfig,
+                useFactory: getAuthServiceConfigs
+              }
+             ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
