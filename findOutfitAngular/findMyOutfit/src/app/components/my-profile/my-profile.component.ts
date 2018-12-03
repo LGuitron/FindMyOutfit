@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import internalApis from '../../../assets/json/internalApis.json';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {Chart} from 'chart.js';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-profile',
@@ -13,8 +14,11 @@ export class MyProfileComponent implements OnInit {
   labels_tags = []; // labels returned from database
 
   PieChart = []; // variable for creation of piechart
-  datos = []; // data from db 
-  constructor(private http: HttpClient) {
+  datos = []; // data from db
+  constructor(private http: HttpClient, private router: Router) {
+
+      if(localStorage.getItem("user_email") == null)
+        this.router.navigate(['']);
 
   } //constructor for httpclient call
 
@@ -55,8 +59,8 @@ export class MyProfileComponent implements OnInit {
   getUsersID(id : string)
   {
        this.http.get(internalApis.users + "/" + id).subscribe((result: any) => {
-        let resultados = result; 
-        this.datos= result; 
+        let resultados = result;
+        this.datos= result;
 
         try{
          this.labels_tags = result['tag_history'];//.map(res => res.tag_history);
@@ -96,7 +100,7 @@ export class MyProfileComponent implements OnInit {
             'rgba(255, 159, 64, 0.9)',
             'rgba(135, 206, 235,0.9)',
             'rgba(255, 69, 0,0.7)',
-            'rgba(148, 0, 211,0.7)', 
+            'rgba(148, 0, 211,0.7)',
             'rgba(72, 61, 139,0.7)'
           ],
           borderWidth: 1
@@ -107,12 +111,12 @@ export class MyProfileComponent implements OnInit {
           text:"Tus 10 búsquedas más frecuentes",
           display: true
         },
-        cutoutPercentage: 40, 
-        legend: {position:'bottom', 
+        cutoutPercentage: 40,
+        legend: {position:'bottom',
               labels:{pointStyle:'circle',
               usePointStyle:true}
           },
-        
+
     maintainAspectRatio: false
       }
     });
@@ -139,15 +143,15 @@ export class MyProfileComponent implements OnInit {
     }
     console.log("tags");
     console.log(tags);
-    //mapa a array 
+    //mapa a array
     let keys = Array.from(tags);
     keys.sort(function(a,b){
       return b[1]- a[1];
     });
     let tenkeys  = keys.slice(0,10);
 
-    var title = []; 
-    var values = []; 
+    var title = [];
+    var values = [];
     for (let key of tenkeys) {
       title.push(key[0]);
       values.push(key[1]);
@@ -163,5 +167,5 @@ export class MyProfileComponent implements OnInit {
     console.log(this.labelsValues);
     this.generatePieChart(this.labelsType, this.labelsValues);
  }
- 
+
 }

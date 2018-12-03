@@ -10,8 +10,9 @@
 				<div class="menu col-xs-12 col-sm-12 col-md-6 text-center">
           			<!--<a [routerLink]="['/registro/']">Regístrate</a>
 					<a [routerLink]="['/login/']">Iniciar Sesión</a>-->
-					<a [routerLink]="['/login/']">Iniciar Sesión</a>
-					<a [routerLink]="['/registro/']">Registrarse</a>
+					<a *ngIf="user_email==null" [routerLink]="['/login/']">Iniciar Sesión</a>
+					<a *ngIf="user_email==null" [routerLink]="['/registro/']">Registrarse</a>
+					<h5 *ngIf="user_email!=null" style="color:white;">Bienvenido {{user_name}}</h5>
 
 				</div>
 			</div>
@@ -108,7 +109,7 @@
 					</div>
 
 				</div>
-				
+
 			</div>
 		</section>
 	</section>
