@@ -25,12 +25,12 @@
 
     <!--FORM PARA AGREGAR NUEVOS PRODUCTOS AL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
       <div class="col-xs-1 col-sm-1 col-md-1">
-        <a *ngIf="user_email!=null" [routerLink]="['/add-product/']"><img class="img-fluid" src="../../../assets/navbar/add-property.png"></a>
+        <a *ngIf="user_email!=null && user_type=='company'" [routerLink]="['/add-product/']"><img class="img-fluid" src="../../../assets/navbar/add-property.png"></a>
       </div>
 
       <!--FORM VER Y ELIMINAR PRODUCTOS DEL CATALOGO (SOLO USUARIOS CON PRIVILEGIOS)-->
       <div class="col-xs-1 col-sm-1 col-md-1">
-        <a *ngIf="user_email!=null" [routerLink]="['/catalog/']"><img class="img-fluid" src="../../../assets/navbar/shirt.png"></a>
+        <a *ngIf="user_email!=null && user_type=='company'" [routerLink]="['/catalog/']"><img class="img-fluid" src="../../../assets/navbar/shirt.png"></a>
       </div>
 
       <div class="col-xs-1 col-sm-1 col-md-1">

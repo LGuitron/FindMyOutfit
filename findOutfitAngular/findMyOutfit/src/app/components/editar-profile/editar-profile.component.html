@@ -4,13 +4,14 @@
   <div class="profile">
     <div class="content">
       <h1>Editar perfil</h1>
-      <form action="">
+      <form [formGroup]="profileForm" (ngSubmit)="enviarFormulario()">
         <fieldset>
           <div class="grid-35">
             <label for="email">Correo</label>
           </div>
           <div class="grid-65">
-            <input type="email" id="email" tabindex="6" />
+            <!--input type="email" id="email" value={{user_email}} tabindex="6" /-->
+            <label for="email">{{user_email}}</label>
           </div>
         </fieldset>
         <fieldset>
@@ -18,72 +19,17 @@
             <label for="fname">Nombre</label>
           </div>
           <div class="grid-65">
-            <input type="text" id="fname" tabindex="1" />
+            <input type="text" id="fname" value={{user_name}} tabindex="1" />
           </div>
         </fieldset>
         <fieldset>
           <div class="grid-35">
-            <label for="lname">Apellido</label>
+            <label for="lname">Apellidos</label>
           </div>
           <div class="grid-65">
-            <input type="text" id="lname" tabindex="2" />
+            <input type="text" id="lname" value={{user_lastnames}} tabindex="2" />
           </div>
         </fieldset>
-        <!-- Highest Qualification -->
-        <fieldset>
-          <div class="grid-35">
-            <label for="qualification">Genero</label>
-          </div>
-          <div class="grid-65">
-            <select name="qualification" id="qualification" tabindex="8">
-              <option selected="selected" value="--------------" disabled>--------------</option>
-              <option value="primary_school">Masculino</option>
-              <option value="high_school">Femenino</option>
-              <option value="associate">Otro</option>
-            </select>
-          </div>
-        </fieldset>
-        <!-- Highest Qualification -->
-        <fieldset>
-          <div class="grid-35">
-            <label for="qualification">Talla</label>
-          </div>
-          <div class="grid-65">
-            <select name="qualification" id="qualification" tabindex="8">
-              <option selected="selected" value="--------------" disabled>--------------</option>
-              <option value="primary_school">XS</option>
-              <option value="high_school">S</option>
-              <option value="associate">M</option>
-              <option value="associate">L</option>
-              <option value="associate">XL</option>
-            </select>
-          </div>
-        </fieldset>
-     
-        <!-- Location -->
-        <fieldset style="border-bottom: none;">
-          <div class="grid-35">
-            <label for="location">Fecha de nacimiento</label>
-          </div>
-          <div class="grid-65">
-            <input type="date" id="location" tabindex="4" />
-          </div>
-        </fieldset>
-  
-      
-        <!-- Looking for Work 
-        <fieldset>
-          <div class="grid-35">
-            <label for="forHire">Genero</label>
-          </div>
-          <div class="grid-65">
-            <select name="work" id="forHire" tabindex="7">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-        </fieldset>-->
-        
         <fieldset>
           <input type="button" [routerLink]="['/busca-outfit/']" class="Btn cancel" value="Cancel" />
           <input type="button" [routerLink]="['/busca-outfit/']" class="Btn" value="Save Changes" />
