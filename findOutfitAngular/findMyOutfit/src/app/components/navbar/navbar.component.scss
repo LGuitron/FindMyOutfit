@@ -1,3 +1,7 @@
+@mixin row() {
+  font-size: 0; 
+  display: inline; 
+}
 .contenedor_menu_logo {
   padding: 25px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -23,6 +27,9 @@
   }
 }
 
+.icono{
+  width: 90%; 
+}
 
 $grid-breakpoints: (
   xs: 0,
@@ -46,4 +53,15 @@ $grid-breakpoints: (
       }
     }
   }
+    .center-icono{
+      text-align: center; 
+      .icono{
+        width: 10%;
+        padding-bottom: 20px;
+      }
+    }
+  
+  
+  
 }
+

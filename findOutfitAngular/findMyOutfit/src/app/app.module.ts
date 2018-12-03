@@ -15,7 +15,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
 
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Servicios
 
@@ -62,6 +62,7 @@ import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLogi
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

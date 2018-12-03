@@ -68,7 +68,7 @@ export class MyProfileComponent implements OnInit {
         this.getLabels();
         }catch(error ){
           console.log("jiji");
-          document.getElementById("noTags").textContent="Aún no tienes búsquedas";
+          document.getElementById("noTags").textContent="Aún no tienes búsquedas. ";
         };
       }, error => {
         document.getElementById("noTags").textContent="newtext";
