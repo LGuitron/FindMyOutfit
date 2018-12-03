@@ -9,14 +9,29 @@ import { ImageTransferService } from '../../services/image-transfer.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
+import {trigger, state,style,animate,transition} from '@angular/animations';
+import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 
 @Component({
   selector: 'app-lista-sugerencias',
   templateUrl: './lista-sugerencias.component.html',
-  styleUrls: ['./lista-sugerencias.component.scss']
+  styleUrls: ['./lista-sugerencias.component.scss'],
+  animations: [
+    trigger('popOverState',[
+      state('show',style({
+        opacity: 1
+    })),
+    state('hide',style({
+      opacity: 0
+    })),
+    transition('show => hide',animate('600ms ease-out')),
+    transition('hide => show',animate('1000ms ease-in'))
+  ])
+  ]
 })
 export class ListaSugerenciasComponent implements OnInit {
 
+  
   imageUrl : string;
   user_email : string;                          // Email of the logged user
   tags : Array<any>;
@@ -26,7 +41,16 @@ export class ListaSugerenciasComponent implements OnInit {
   probability_exponent    =  3;                 // Variable to favor tags with higher probabilities
   items_per_tag = [];
   display_tags  = new Array<boolean>();         // Boolean array to set the tags to be displayed
+ 
+  //animations 
+  show = false; 
+  get stateName(){
+    return this.show ? 'show' : 'hide'
+  }
 
+  toggle(){
+    this.show = !this.show; 
+  }
 
 
   constructor(private zone:NgZone, public clarifai: ClarifaiService, public transferService: ImageTransferService, public mercadoLibre: MercadoLibreService, private http: HttpClient){

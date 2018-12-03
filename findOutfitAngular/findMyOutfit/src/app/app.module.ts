@@ -15,7 +15,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditarProfileComponent } from './components/editar-profile/editar-profile.component';
 
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Servicios
 
@@ -58,6 +58,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService],

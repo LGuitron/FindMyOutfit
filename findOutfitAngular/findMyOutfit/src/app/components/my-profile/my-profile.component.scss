@@ -1,3 +1,8 @@
+@import '../../../variables';
+*{
+    font-family: 'Source Serif Pro', serif;
+}
+ 
 div{
     .data 
     {
@@ -22,7 +27,12 @@ div{
     border-radius: 2%;
 }
 canvas{
-    height: 90% !important;
-    width: auto; 
+    height:auto;
+    width: 100% !important; 
     max-height: 300px !important; 
 }
+@media only screen and (min-width: 0px) and (max-width: 575px){ 
+    container{
+        max-width: 100%;
+    }
+   }

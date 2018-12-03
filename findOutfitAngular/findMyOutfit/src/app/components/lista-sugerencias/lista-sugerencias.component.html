@@ -1,7 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container">
 
-
+<!--test animation-->
+<div [@popOverState]="stateName">
+  <p><img src="../../../assets/clothes.png" width="50px"></p>
+  <p>SOS</p>
+</div>
+<button (click)="toggle()">Toggle popover</button>
 
   <!-- IMAGE UPLOADED BY USER-->
   <div class="row">
