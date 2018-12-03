@@ -23,7 +23,8 @@ export class MyProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getUsersID("legl_1995@hotmail.com");
+    //this.user_email = localStorage.getItem("user_email");
+    this.getUsersID(localStorage.getItem("user_email"))//"legl_1995@hotmail.com");
     console.log("resultado pt 2");
     console.log(this.labels_tags);
 
@@ -153,10 +154,6 @@ export class MyProfileComponent implements OnInit {
 
     }
 
-    /*
-    for (let value of Array.from(tags.values())) {
-      values.push(value);
-    }*/
 
     this.labelsType = title;
     console.log("labelsType");
