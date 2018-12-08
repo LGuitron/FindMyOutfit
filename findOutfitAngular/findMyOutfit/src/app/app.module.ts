@@ -35,9 +35,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
-import { getAuthServiceConfigs } from "./socialloginConfig";
-import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider } from "angular-6-social-login";
-
 //externals
 
 import { NgxSpinnerModule  } from 'ngx-spinner';
@@ -70,15 +67,9 @@ import { NgxSpinnerModule  } from 'ngx-spinner';
     MDBBootstrapModule.forRoot(),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    SocialLoginModule,
     NgxSpinnerModule,
   ],
-  providers: [AuthService, FacegoogleService,
-              {
-                provide: AuthServiceConfig,
-                useFactory: getAuthServiceConfigs
-              }
-             ],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

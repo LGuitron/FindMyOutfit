@@ -6,7 +6,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import {Md5} from "md5-typescript";
 import {Router} from "@angular/router";
 //import {FacegoogleService} from '../../services/facegoogle.service';
-import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider , AuthService } from "angular-6-social-login";
+//import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider , AuthService } from "angular-6-social-login";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   });
 
   //constructor(private http: HttpClient, private router: Router, public authService: FacegoogleService) { }
-  constructor(private http: HttpClient, private router: Router, private socialAuthService: AuthService ) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public isError = false;
   ngOnInit() {
@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
  }
 
 
-   public socialSignIn(socialPlatform : string) {
+   /*public socialSignIn(socialPlatform : string) {
     let socialPlatformProvider;
     if(socialPlatform == "facebook"){
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
@@ -146,8 +146,6 @@ export class LoginComponent implements OnInit {
           });
       }
     );
-   }
-
-
+   }*/
 }
 
